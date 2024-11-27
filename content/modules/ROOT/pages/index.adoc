@@ -1,1 +1,21 @@
 == Welcome to Uplift and Shift!
+
+=== Introduction
+
+Customers are seeking VMware alternatives and their primary concerns are moving quickly without sacrificing the stability and reliability they value with VMware.
+
+Customers who have performed successful public cloud migrations should be comfortable moving away from VMware since many of the workloads they migrated to the cloud were running in VMware on-prem - some might say these cloud migrations were the original “VMware takeouts”.
+
+These large scale cloud migrations typically leave the Customer with two undesirable choices:
+
+Application Modernization::
+Spend months or years rearchitecting, rewriting and replatforming legacy apps to fit modern service oriented architectures.
+Customers choose this approach because they believe adding modern capabilities to their legacy applications will be worth the time, energy and resources it takes to rebuild these legacy apps.
+
+"Lift and Shift”::
+Spend months or years migrating VMs from on-prem to the cloud and pay more to run the same VMs in the cloud with no additional feature functionality.
+Customers choose this approach because it is the fastest and simplest way to migrate into the cloud.
+
+The vision behind *“UpLift and Shift”* is to provide a compelling alternative: Migrate the VMs to OpenShift and once they are running on Kubernetes, allow them to inherit certain features from the platform without making any changes to the VM itself.
+
+This approach allows the customer to maintain the speed and simplicity of Lift and Shift while “uplifting” the feature functionality of the application with modern capabilities that are traditionally reserved for modern containerized applications.
