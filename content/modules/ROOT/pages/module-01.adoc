@@ -1,1 +1,9 @@
 == Migrate VM from VMware to ROSA
+
+. Viewing the OpenShift Virtualization Operator
+
+This is the operator that creates the “Virtualization” tab in the OpenShift console.  It can be installed simply through the Operator Hub.
+
+. Viewing the Migration Toolkit for Virtualization
+
+This is the operator that creates the “Migration” tab in the OpenShift console. This is where you connect to the VMware cluster you want to migrate VMs from (providers) and create the migration jobs (plans).

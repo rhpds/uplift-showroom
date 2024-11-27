@@ -1,1 +1,9 @@
 == Show Resource Utilization Dashboards
+
+It may seem trivial, but capturing utilization metrics from all VMs isn’t simple, particularly in the cloud.
+OpenShift makes this easy by automatically generating these dashboards for every VM you run on OpenShift.
+The resource metrics are stored in a time series database allowing the user to view utilization at various points in time and is exportable if the Customer wishes to view the metrics in their own dashboards.
+
+. Go to your “windowsnetworking” namespace, on the left hand side click the “Virtualization” tab
+
+. Click “VirtualMachines” and click on the winnetworking1 VM. Show the “Overview” tab and then the “Metrics” tab
