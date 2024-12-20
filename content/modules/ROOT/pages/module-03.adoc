@@ -1,17 +1,12 @@
-== Live Migrate VM Between Hosts
+== Module 3: Declarative IaC for Automating VM Creation
 
-=== Uplift Topic 2: Declarative IaC for Automating VM Resources
-
-Automating the creation of new VM instances or managing the configuration of existing VMs requires an understanding of complex IaC languages.
-One of the advantages of k8s is that its configuration is managed with declarative YAML templates and VMs running on OpenShift are the same.
+Now let’s show how we can use the YAML tab to automate the creation of a new VM.
 
 . Go to your “windowsnetworking” namespace, on the left hand side click the “Virtualization” tab
-. Click “VirtualMachines” and click on the winnetworking1 VM.
-Notice the CPU | Memory section on the “Overview” tab.
-Click the “YAML” tab and scroll down until you see “cpu”.
-Modify “cores” to increase the core count from 4 to 8.
-Restart the VM if necessary to apply the CPU changes.
-
-=== Do a VM Migration
-
-if RH1, don't do it. :D
+. Click “VirtualMachines” and click on the winnetworking1 VM. 
+Copy all the YAML in the YAML tab.
+. Click “VirtualMachines” then “Create” in the top right corner. Select “With YAML”
+. Delete the pre-created YAML and paste the YAML template copied from winnetworking1.
+. Search for “macAddress” and change the MAC address
+. Search for “name: winnetworking1” (around line 41) and change it to winnetworking3
+. Click “Create” and notice the new VM is created

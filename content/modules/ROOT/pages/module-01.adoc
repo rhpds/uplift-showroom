@@ -1,9 +1,9 @@
-== Migrate VM from VMware to ROSA
+== Module 1: Resource Utilization Dashboards
 
-. Viewing the OpenShift Virtualization Operator
+It may seem trivial, but capturing utilization metrics from all VMs isn’t simple, particularly in the cloud. 
+OpenShift makes this easy by automatically generating these dashboards for every VM you run on OpenShift. 
+The resource metrics are stored in a time series database allowing the user to view utilization at various points in time and is exportable if the Customer wishes to view the metrics in their own dashboards.
 
-This is the operator that creates the “Virtualization” tab in the OpenShift console.  It can be installed simply through the Operator Hub.
+. Go to your "windowsnetworking" namespace, on the left hand side click the "Virtualization" tab.
 
-. Viewing the Migration Toolkit for Virtualization
-
-This is the operator that creates the “Migration” tab in the OpenShift console. This is where you connect to the VMware cluster you want to migrate VMs from (providers) and create the migration jobs (plans).
+. Click "VirtualMachines" and click on the winnetworking1 VM. Show the “Overview” tab and then the "Metrics" tab

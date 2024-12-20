@@ -19,3 +19,13 @@ Customers choose this approach because it is the fastest and simplest way to mig
 The vision behind *“UpLift and Shift”* is to provide a compelling alternative: Migrate the VMs to OpenShift and once they are running on Kubernetes, allow them to inherit certain features from the platform without making any changes to the VM itself.
 
 This approach allows the customer to maintain the speed and simplicity of Lift and Shift while “uplifting” the feature functionality of the application with modern capabilities that are traditionally reserved for modern containerized applications.
+
+. Viewing the OpenShift Virtualization Operator
+
+This is the operator that creates the “Virtualization” tab in the OpenShift console.  
+It can be installed simply through the Operator Hub.
+
+. Viewing the Migration Toolkit for Virtualization
+
+This is the operator that creates the “Migration” tab in the OpenShift console. 
+This is where you connect to the VMware cluster you want to migrate VMs from (providers) and create the migration jobs (plans).
