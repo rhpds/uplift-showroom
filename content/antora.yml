@@ -6,14 +6,19 @@ nav:
 
 asciidoc:
   attributes:
+    user: sample_username
+    password: sample_password
+    openshift_console_url: https://console-openshift-console.apps.rosa-qkj6t.f3h3.p1.openshiftapps.com/
     lab_name: "I'm the lab_name var"
     release-version: master
     page-pagination: true
-    my_var: "foo"
-    guid: my-guid
-    ssh_user: devops
-    ssh_password: devops
-    ssh_command: ssh someone@example.com
+    guid: sample_guid
     page-links:
     - url: https://redhat.com
       text: Red Hat
+    - url: https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization
+      text: Landing Page
+    - url: https://docs.openshift.com/rosa/virt/getting_started/virt-getting-started.html
+      text: Documentation
+    - url: https://www.youtube.com/watch?v=7EpmmUIhQ7c
+      text: Demo Videos
