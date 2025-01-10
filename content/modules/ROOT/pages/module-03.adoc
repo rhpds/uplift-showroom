@@ -1,12 +1,144 @@
 == Module 3: Declarative IaC for Automating VM Creation
 
-Now let's show how we can use the YAML tab to automate the creation of a new VM.
+Now you will use the YAML tab to automate the creation of a new VM.
+We've provided the two things you require to do this:
+. A virtual machine image of the desired OS, basic configuration, and if appropriate, the apps deployed.
+. The YAML manifest to instruct OpenShift how to deploy this
 
-. Go to your "windowsnetworking-{user}" namespace, on the left hand side click the "Virtualization" tab
-. Click "VirtualMachines" and click on the winnetworking1 VM.
-Copy all the YAML in the YAML tab.
-. Click "VirtualMachines" then "Create" in the top right corner. Select "With YAML"
-. Delete the pre-created YAML and paste the YAML template copied from winweb01.
-. Search for "macAddress" and change the MAC address
-. Search for "name: winweb01" (around line 41) and change it to winweb03
-. Click "Create" and notice the new VM is created
+WARNING: Please don't forget to *delete this new virtual machine `winweb03`* when done with this lab.
+If you do not, there will not be resources available to finish the workshop.
+
+=== Use the YAML manifest to create the VM
+. Make sure you're in the proper namespace by using the *Projects:* drop-down on the top bar to select the *windowsnetworking-{user}* project.
+. Click *VirtualMachines -> Create -> With YAML* in the top right corner.
++
+image::module-3-create-with-yaml-dropdown.png[Access VM YAML]
++
+. *Delete the pre-created YAML*.
+*Copy/Paste the YAML template below*.
+Click *Create* and notice the new VM is created.
++
+image::module-3-paste-yaml-and-create.png[Paste YAML and Create]
++
+[,yaml,subs="attributes",role=execute]
+----
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  labels:
+    app: winweb03
+    app.kubernetes.io/part-of: 3-Tier-App
+    vm.kubevirt.io/template.revision: '1'
+    vm.kubevirt.io/template.version: v0.25.0
+  name: winweb03
+  namespace: "windowsnetworking-{user}"
+spec:
+  dataVolumeTemplates:
+  - apiVersion: cdi.kubevirt.io/v1beta1
+    kind: DataVolume
+    metadata:
+      name: winweb03
+    spec:
+      source: # <1>
+        http:
+          url: 'http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt/winweb01.qcow2'
+      storage:
+        resources:
+          requests:
+            storage: 90Gi
+  running: true
+  template:
+    metadata:
+      labels:
+        app: winnetworking
+    spec:
+      domain:
+        clock:
+          timer:
+            hpet:
+              present: false
+            hyperv: {}
+            pit:
+              tickPolicy: delay
+            rtc:
+              tickPolicy: catchup
+          utc: {}
+        cpu:
+          cores: 1
+          sockets: 2
+          threads: 1
+        devices:
+          disks:
+          - disk:
+              bus: sata
+            name: rootdisk
+          inputs:
+          - bus: usb
+            name: tablet
+            type: tablet
+          interfaces:
+          - masquerade: {}
+            model: e1000e
+            name: default
+        features:
+          acpi: {}
+          apic: {}
+          hyperv:
+            frequencies: {}
+            ipi: {}
+            relaxed: {}
+            reset: {}
+            runtime: {}
+            spinlocks:
+              spinlocks: 8191
+            synic: {}
+            synictimer:
+              direct: {}
+            tlbflush: {}
+            vapic: {}
+            vpindex: {}
+          smm:
+            enabled: true
+        firmware:
+          bootloader:
+            efi: {}
+        machine:
+          type: q35
+        resources:
+          requests:
+            memory: 6Gi
+      networks:
+      - name: default
+        pod: {}
+      terminationGracePeriodSeconds: 3600
+      volumes:
+      - dataVolume:
+          name: winweb03
+        name: rootdisk
+----
+<1> The virtual machine image
++
+. Watch the new `winweb03` virtual machine go through three phases:
+.. `WaitingForVolumeBinding` - a new storage volume is created for this vm.
++
+image::module-3-waitingforvolumebinding.png[winweb03 - Waiting for Volume Binding]
++
+.. `Provisioning` - identifying the target OpenShift Node, marshalling the compute resources, downloading the vm image.
++
+image::module-3-provisioning.png[winweb03 - Provisioning]
++
+.. `Running` - the virtual machine is available.
++
+image::module-3-running.png[winweb03 - Running]
++
+. Please *Delete* the new virtual machine to make room on the workshop cluster for later activities.
+.. Click *Actions -> Delete* and then on the nag window, click *Delete* to free up resources.
++
+image::module-3-vm-deleting.png[winweb03 - Deleting]
+
+WARNING: If you don't delete `winweb03` you are likely not going to be able to finish this workshop.
+
+=== Next Steps
+
+Congratulations!
+You created a virtual machine with nothing but a YAML manifest and a virtual machine image file.

@@ -1,27 +1,82 @@
 == Module 4: Simplified configuration for load balancing
 
-Load balancing VMs typically requires multiple different tools and configurations to work properly.
-For example, to load balance two VMs internally and externally you might:
+In most systems, load balancing virtual machiness typically requires multiple different tools and configurations to work properly.
+For example, to load balance two virtual machines internally and externally you might:
 . Create a private internal load balancer
 . Create an internet facing endpoint and route it to the internal load balancer
 . Create private DNS records for the internal load balancer
 . Create public DNS records for the public endpoint for external access
-. Register VMs with the load balancer
+. Register virtual machines with the load balancer
 . Configure the listening/forwarding port or port translation
 . Configure health check endpoints and tests
 . Configure health check timeouts and intervals
 
-Networking and load balancing within OpenShift has been trivialized - let's walk through the steps to setup internal and external load balancing within OpenShift.
+OpenShift trivializes networking and load balancing.
+In this module you will walk through the steps to setup internal and external load balancing within OpenShift.
 
-. Go to your "windowsnetworking" namespace, on the left hand side click the "Virtualization" tab
-. Click "VirtualMachines" and click on the winnetworking1 VM. Click the "YAML" tab and search for "app: winnetworking". This is an arbitrary label assigned to both VMs.
-. On the left side of the console, click to expand "Networking". Click "Services".
-. In the top right corner, click "Create Service". On line 4, change the name to "windowsnetworking".
-. Modify line 8 to read "app: winnetworking"
-. Change the "targetPort:" value on line 12 to 80 then click "Create" in the bottom left corner
-. Click the "Pods" tab and notice that the two winnetworking VMs have already registered with the service object. This will allow applications within the OpenShift cluster to access these VMs through the windowsnetworking "load balancer".
-. On the left side, under "Services", click "Routes" then click "Create Route".
-. In the "Name" field put windowsnetworking
-. Click the drop down box below "Service" and select the windowsnetworking service you just created.
-. Click the drop down box below "Target port" and select port 80 then click "Create" in the bottom left corner.
-. In the middle right, see the "Location" section. Click the link to view your load balanced virtual machines. Note: if this step fails, check to see if your browser redirected the http connection to https
+== Set up internal load balancing with Services
+
+All resources in OpenShift can have labels applied to them to identify and group them.
+Services are internal load balancers in OpenShift.
+Services route traffic to resources identified by a label selector parameter in the definition of the Service.
+You will create a service and identify the virtual machines it services as a load balance by means of labels on the virtual machines.
+
+. On the left bar, click the *Virtualization -> VirtualMachines* and on the top bar select the *Project: `windowsnetworking-{user}`*
+. To find the label on the virtual machine that will identify it to the Service for selection, *click on the `winweb01`* virtual machine.
+*Click the YAML tab* and *search for "app: winnetworking"*.
+This is an arbitrary label assigned to both virtual machines.
++
+image::module-4-find-vm-app-label.png[Find VM label app=winnetworking]
++
+. On the left side of the console, click to expand *Networking -> Services* and on the top right corner, click *Create Service*.
++
+image::module-4-create-service.png[Create Service button]
++
+. Modify the Service to load balance between virtual machines
+.. On line 4, change the name to "windowsnetworking".
+.. Modify line 8 to read "app: winnetworking"
+.. Change the "targetPort:" value on line 12 to 80 then *click "Create"* in the bottom left corner
++
+image:module-4-create-service-yaml.png[Create Service YAML,float="none",align="left"]
++
+. Click the *Pods tab* and notice that the two `winweb` virtual machines have already registered with the service object.
+This will allow applications within the OpenShift cluster to access these virtual machines through the windowsnetworking Service, aka "load balancer".
++
+image:module-4-pods-in-service.png[Pods in Service,float="none",align="left"]
+
+== Set up external access to load balancing
+
+OpenShift was the first to introduce the concept of Routes in the early days of Kubernetes.
+You'll use a Route to provide external access to the virtuals machines through the internal Service, aka, load balancer.
+
+. On the left side, Click *Networking -> Routes* and then click *Create Route*.
++
+image:module-4-create-route.png[Create Route,float="none",align="left"]
++
+. Use the form to create the Route.
+.. In the "Name" field put `windowsnetworking`.
+.. Click the drop down box below *Service* and select the `windowsnetworking` Service you just created.
+.. Click the drop down box below *Target port* and select port `80`.
+.. Tick the *Secure Route* checkbox.
+.. Under *TLS termination*, select `Edge`.
+.. Under *Insecure traffic*, select `Redirect`
+.. Finally, click *Create* in the bottom left corner.
++
+image:module-4-create-route-form.png[Create Route form,float="none",align="left"]
++
+. Test the Route.
+In the middle right, find the *Location* section.
+*Click the link to view your load balanced virtual machines.*
++
+image:module-4-test-route.png[Test Route,float="none",align="left"]
++
+. A new browser window opens and accesses the web application.
++
+image:module-4-web-application.png[Web Application,float="none",align="left"]
+
+=== Next Steps
+
+Congratulations!
+You've implemented internal load balancing through kubernetes Services, and accessed them via the Internet through OpenShift Routes.
+
+Move on to the next module, where you will set up a Network Egress Firewall.
