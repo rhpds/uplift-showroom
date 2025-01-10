@@ -1,4 +1,4 @@
-== Welcome to Uplift and Shift!
+== Welcome to UpLift and Shift!
 
 === Introduction to the UpLift and Shift: Enhancing Legacy VMs with OpenShift Virtualization Lab
 
