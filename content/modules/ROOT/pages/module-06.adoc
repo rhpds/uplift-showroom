@@ -1,25 +1,24 @@
 == Module 6: Istio Traffic Management
 
-In the world of containers, service mesh (or Isitio more specifically) is considered one of the most desirable and transformational k8s features. 
-Whenever we talk about service mesh, it’s in the context of words like “modernized”, “12 factor”, “SOA” and containerized apps - never with legacy VMs. 
+In the world of containers, service mesh (or Isitio more specifically) is considered one of the most desirable and transformational k8s features.
+Whenever we talk about service mesh, it's in the context of words like "modernized", "12 factor", "SOA" and containerized apps - never with legacy VMs.
 
-“Uplift and Shift” is about giving additional feature functionality without requiring rewriting or replatforming your applications.
+"Uplift and Shift" is about giving additional feature functionality without requiring rewriting or replatforming your applications.
 
-Imagine the situation where a web application is running in Windows IIS and customers are reporting intermittent errors/latency. 
-What tooling exists for those legacy VMs to troubleshoot? 
-In this final section, we’ll show how we can use the advanced network telemetry from Istio and Kiali to easily troubleshoot these issues with our legacy windows VMs.
+Imagine the situation where a web application is running in Windows IIS and customers are reporting intermittent errors/latency.
+What tooling exists for those legacy VMs to troubleshoot?
+In this final section, we'll show how we can use the advanced network telemetry from Istio and Kiali to easily troubleshoot these issues with our legacy windows VMs.
 
-. Switch to the “istio-system” project, click “Networking” on the left and click “Routes”. Find the route for Kiali, browse and login to Kiali.
-. Within Kiali, click “Services” on the left. Notice that we have a service called winmesh. Click the winmesh service - notice that there are two VMs, windowsmesh1 and windowsmesh2.
-. In the top right corner, click “Actions” and “Request Routing”
-. Click “Route To” and notice the two VMs are listed. Click “Add Route Rule” to do 50/50 load balancing.
-. Click “Show Advanced Options” at the bottom. Input “*” for VirtualService Hosts.
-. Click “Gateways” and click “Add Gateway”. Click “Create Gateway” then click “Preview”.
-. Click “Create” or “Update”
-. Now that the request routing is created, click “Graph” on the left side. 
-. Click “Display” and select “Response Time” to see request latency.
-. Click “Throughput” to see data transfer rate
-. Click “Traffic Distribution” to view load balancing percentage
-. Click “Traffic Rate” to see how many requests per second are being sent
+. Switch to the "istio-system" project, click "Networking" on the left and click "Routes". Find the route for Kiali, browse and login to Kiali.
+. Within Kiali, click "Services" on the left. Notice that we have a service called winmesh. Click the winmesh service - notice that there are two VMs, windowsmesh1 and windowsmesh2.
+. In the top right corner, click "Actions" and "Request Routing"
+. Click "Route To" and notice the two VMs are listed. Click "Add Route Rule" to do 50/50 load balancing.
+. Click "Show Advanced Options" at the bottom. Input "*" for VirtualService Hosts.
+. Click "Gateways" and click "Add Gateway". Click "Create Gateway" then click "Preview".
+. Click "Create" or "Update"
+. Now that the request routing is created, click "Graph" on the left side.
+. Click "Display" and select "Response Time" to see request latency.
+. Click "Throughput" to see data transfer rate
+. Click "Traffic Distribution" to view load balancing percentage
+. Click "Traffic Rate" to see how many requests per second are being sent
 . Notice the panel on the right side that shows request response code (200, 300, 400, 500s)
-

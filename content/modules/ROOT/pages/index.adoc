@@ -36,7 +36,7 @@ Key benefits include:
 * *Innovation at Your Pace*: Leverage OpenShift's cloud-native capabilities, such as container-based workloads and serverless applications, when you're ready to modernize.
 * *Managed Services*: Offload routine platform management to Red Hat and AWS experts, freeing IT teams to focus on strategic initiatives.
 
-By combining the ease of lift-and-shift with modern cloud-native features, *OpenShift Virtualization on AWS* accelerates your organization’s journey to modernization, offering a unified operational experience for VMs and container applications across your cloud and on-prem environments.
+By combining the ease of lift-and-shift with modern cloud-native features, *OpenShift Virtualization on AWS* accelerates your organization's journey to modernization, offering a unified operational experience for VMs and container applications across your cloud and on-prem environments.
 
 This lab will guide you through the process of leveraging OpenShift Virtualization to "uplift" your VMs and unlock the potential of hybrid cloud infrastructure—empowering your team to innovate faster and deliver greater value.
 

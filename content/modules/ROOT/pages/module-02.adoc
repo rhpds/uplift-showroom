@@ -1,15 +1,15 @@
 == Module 2: Declarative IaC for Automating VM Resources
 
-Automating the creation of new VM instances or managing the configuration of existing VMs requires an understanding of complex IaC languages. 
+Automating the creation of new VM instances or managing the configuration of existing VMs requires an understanding of complex IaC languages.
 One of the advantages of k8s is that its configuration is managed with declarative YAML templates and VMs running on OpenShift are the same.
 
-. Go to your “windowsnetworking” namespace, on the left hand side click the “Virtualization” tab.
+. Go to your "windowsnetworking-{user}" namespace, on the left hand side click the "Virtualization" tab.
 
-. Click “VirtualMachines” and click on the winnetworking1 VM. 
-Notice the CPU | Memory section on the “Overview” tab. 
+. Click "VirtualMachines" and click on the winnetworking1 VM.
+Notice the CPU | Memory section on the "Overview" tab.
 
-. Click the “YAML” tab and scroll down until you see “cpu”. 
+. Click the "YAML" tab and scroll down until you see "cpu".
 
-. Modify “cores” to increase the core count from 4 to 8. 
+. Modify "cores" to increase the core count from 4 to 8.
 
-. Restart the VM if necessary to apply the CPU changes.
+. Restart the VM to apply the CPU changes.

@@ -1,22 +1,77 @@
 == Module 5: Network Egress Firewall
 
-Security is important to every customer. 
-The least privilege principle is a common security practice that limits an application's access to only those resources it needs to operate. 
-For example, if we know an application does not need access to the internet, we should create a policy to block that application’s access to the internet.
+Security is important to every customer.
+The least privilege principle is a common security practice that limits an application's access to only those resources it needs to operate.
+For example, if we know an application does not need access to the internet, we should create a policy to block that application's access to the internet.
 
-In the real world, customers will solve this challenge with outbound proxies/VLANs/firewalls, but those solutions can be expensive and complex to implement. 
+In the real world, customers will solve this challenge with outbound proxies/VLANs/firewalls, but those solutions can be expensive and complex to implement.
 Now we will show OpenShift Virtualization allows us to add an additional layer of security with just a few button clicks.
 
-. Click “VirtualMachines”, click “winnetworking1” then click the “Console” tab. 
-Login to the Windows VM
-. Click the start menu, then type “powershell”. 
-Run “curl google.com” and notice that the connection succeeds
-. On the left side, click “Networking”. 
-Click “NetworkPolicies”. 
-Click “Create NetworkPolicy”.
-. Name the policy “no-egress” then click “Add pod selector”. 
-The label is App and the Selector is winnetworking
-. Click the link that says “affected pods” to see the pods that will be affected by this networking policy. 
-Click “Deny all egress traffic” and click “Create”.
-. Go back to the powershell window and run “curl google.com” again. 
-Notice that the network connection hangs indicating internet access is blocked.
+In this module, you will test blocking egress access from a Windows VM to the Internet with the built-in, cloud native features of OpenShift.
+
+=== Access the Internet through a Windows VM console
+
+. Click *VirtualMachines*, click *winweb01* then click the *Console tab*.
+You are already logged into the windows VM's administrative interface.
++
+image::module-5-winweb01-console.png[Windows VM console]
+
+. *Type 15* and hit *Enter* to start Powershell
++
+image::module-5-powershell-01.png[Powershell Activation]
++
+. *Copy* the following command and *paste* in the VM console with the *special paste button*.
+Click into the VM console and hit *Enter*.
+Notice that the connection succeeds with `StatusCode: 200`
++
+[,console,subs="attributes",role=execute]
+----
+curl google.com -UseBasicParsing -TimeoutSec 1 | findstr StatusCode"
+----
++
+image::module-5-powershell-curl-success.png[Powershell cURL success]
+
+=== Implement a Network Policy to Block Egress
+
+. On the left side, click *Networking -> NetworkPolicies -> Create NetworkPolicy*.
++
+image::module-5-netpol-create.png[Create NetworkPolicy]
++
+. Select the YAML View radio button.
++
+image::module-5-netpol-complete.png[NetworkPolicy Complete]
++
+. Replace the sample YAML with the following NetworkPolicy.
++
+[,yaml,subs="attributes",role=execute]
+----
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+ name: noegress
+ namespace: windowsnetworking-{user}
+spec:
+ podSelector:
+   matchLabels:
+     app: winnetworking
+ policyTypes:
+   - Egress
+----
++
+. *Click Create* when your console looks as follows.
+
+=== Validate that Internet Access is Blocked from the Windows VM
+
+. Go back to the Powershell and test the network connection to the Internet.
+*Click Virtualization -> VirtualMachines -> winweb01 -> Console*
+Click into the console and repeat the Internet access test.
+*To run the same command again, press the Up Arrow and hit Enter*
++
+image::module-5-powershell-curl-failure.png[Powershell cURL failure]
+
+=== Next Steps
+
+Congratulations!
+You have seen how easy it is to leverage cloud native resouces to implement a Network Egress Firewall.
+
+In the next module, you will configure advanced traffic management.

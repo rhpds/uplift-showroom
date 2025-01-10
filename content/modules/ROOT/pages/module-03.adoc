@@ -1,12 +1,12 @@
 == Module 3: Declarative IaC for Automating VM Creation
 
-Now let’s show how we can use the YAML tab to automate the creation of a new VM.
+Now let's show how we can use the YAML tab to automate the creation of a new VM.
 
-. Go to your “windowsnetworking” namespace, on the left hand side click the “Virtualization” tab
-. Click “VirtualMachines” and click on the winnetworking1 VM. 
+. Go to your "windowsnetworking-{user}" namespace, on the left hand side click the "Virtualization" tab
+. Click "VirtualMachines" and click on the winnetworking1 VM.
 Copy all the YAML in the YAML tab.
-. Click “VirtualMachines” then “Create” in the top right corner. Select “With YAML”
-. Delete the pre-created YAML and paste the YAML template copied from winnetworking1.
-. Search for “macAddress” and change the MAC address
-. Search for “name: winnetworking1” (around line 41) and change it to winnetworking3
-. Click “Create” and notice the new VM is created
+. Click "VirtualMachines" then "Create" in the top right corner. Select "With YAML"
+. Delete the pre-created YAML and paste the YAML template copied from winweb01.
+. Search for "macAddress" and change the MAC address
+. Search for "name: winweb01" (around line 41) and change it to winweb03
+. Click "Create" and notice the new VM is created

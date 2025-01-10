@@ -1,9 +1,77 @@
-== Module 1: Resource Utilization Dashboards
+== Module 1: Operators and Resource Utilization Dashboards
 
-It may seem trivial, but capturing utilization metrics from all VMs isn’t simple, particularly in the cloud. 
-OpenShift makes this easy by automatically generating these dashboards for every VM you run on OpenShift. 
-The resource metrics are stored in a time series database allowing the user to view utilization at various points in time and is exportable if the Customer wishes to view the metrics in their own dashboards.
+=== Accessing the System
 
-. Go to your "windowsnetworking" namespace, on the left hand side click the "Virtualization" tab.
+Your workshop environment is on a shared ROSA cluster.
+Other participants in this workshop are also on this cluster, so you have limited access to the behind-the-scenes workings of OpenShift.
+Where important features of OpenShift are not visible to your user, this Workshop Guide will offer explanations and screenshots of the relevatnt parts.
+This tight user access control shows off the powerful multi-tenancy of OpenShift.
+Many projects can run on a single OpenShift cluster, and not interfere with each other.
 
-. Click "VirtualMachines" and click on the winnetworking1 VM. Show the “Overview” tab and then the "Metrics" tab
+You'll be doing this whole workshop through the OpenShift Console.
+
+TIP: If you're on an ordinary laptop, the workshop experience is best done at full-screen.  The OpenShift Console is a robust interface, and you'll have the best experience in full screen mode.  Switch between these instructions and the OpenShift Console as you progress through these instructions.
+
+. *Click the {openshift_console_url}[OpenShift Console^]*.
+A new browser tab will open.
+. ROSA offers optional integreation with Amazon Cognito, an identity platform for web and mobile apps.
+*Click Cognito*.
++
+image::module-1-console-login.png[Console Login]
++
+. *Enter your username `{user}` and password `{password}`*.
+. By default you will be taken to the Developer perspective.
+Change to the Administrator perspective.
+*Click the drop-down menu on the upper left, and select Administrator*.
++
+image::module-1-administrator.png[Administrator perspective]
+
+Congratulations!
+You're now logged in and ready to begin the workshop!
+
+=== The OpenShift Virtualization Operator
+
+The OpenShift Virualization operator enables OpenShift to host virtual machines and creates the "Virtualization" tab in the OpenShift console.
+It can be installed simply through the Operator Hub.
+
+NOTE: For security, your user is unable to see the configuration of the OpenShift Virtualization Operator.
+Please have a close look at the follow image to get a sense of the easy of the operator installation and configuration.
+
+image::module1-virt-operator.png[OpenShift Virtualization Operator]
+
+=== The Migration Toolkit for Virtualization
+
+The Migration Toolkit for Virtualization operator creates the "Migration" tab in the OpenShift console.
+This is where you connect to the VMware cluster you want to migrate VMs from (providers) and create the migration jobs (plans).
+
+NOTE: For security, your user is unable to see the configuration of the Migration Toolkit for Virtualization Operator.
+Please have a close look at the follow image to get a sense of the easy of the operator installation and configuration.
+
+image::module-1-mtv-operator.png[MTV Operator]
+
+=== Resource Utilization
+
+It may seem trivial, but capturing utilization metrics from all VMs isn't simple, particularly in the cloud.
+OpenShift makes this easy by automatically generating these dashboards for every VM you run on OpenShift.
+The resource metrics are stored in a time series database allowing the user to view utilization at various points in time and is exportable if the customer wishes to view the metrics in their own dashboards.
+
+. View your list of virtual machines in the windowsnetworking-{user} project.
+On the left bar, *click Virtualization -> VirtualMachines*.
+Then *select Project: `windowsnetworking-{user}`* from the top bar.
++
+image::module-1-virtual-machines.png[Virtualization VirtualMachines]
++
+. *Click on the winweb01* VM to see an Overview of a VM.
++
+image::module-1-virtual-machine-list.png[Virtual Machines List]
++
+*Click the "Metrics" tab* to see the resource utilization information for this VM.
++
+image::module-1-virtual-machine-metrics.png[Virtual Machine Metrics]
+
+=== Next Steps
+
+Congratulations!
+You've begun your exploration of OpenShift Virtualization.
+
+Now move on to Module 2: Declarative Infrastructure as Code (IaC) for Automating VM Resources
