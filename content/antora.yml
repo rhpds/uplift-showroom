@@ -8,8 +8,8 @@ asciidoc:
   attributes:
     user: sample_username
     password: sample_password
-    openshift_console_url: https://console-openshift-console.apps.rosa-qkj6t.f3h3.p1.openshiftapps.com/
-    lab_name: "I'm the lab_name var"
+    openshift_console_url: https://console-openshift-console.apps.rosa-sample.sample.p1.openshiftapps.com/
+    kiali_url: https://kiali-istio-system.apps.rosa-sample.sample.p1.openshiftapps.com/
     release-version: master
     page-pagination: true
     guid: sample_guid
