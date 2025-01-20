@@ -12,7 +12,7 @@ In this final section, we'll show how we can use the advanced network telemetry 
 
 === Access Kiali
 
-. Log in to the {kiali_url}[Kiali web interface] with your username `{user}` and password `{password}`.
+. Log in to the {kiali_url}[Kiali web interface^] with your username `{user}` and password `{password}`.
 . Within Kiali, click *Services* on the left.
 . From the *namespace* drop-down on the top bar, select your namespace: `windowsmesh-{user}`.
 . Notice that we have a service called `winmesh`.
