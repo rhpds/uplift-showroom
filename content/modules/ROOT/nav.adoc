@@ -1,5 +1,5 @@
 * xref:index.adoc[Introduction]
-* xref:module-01.adoc[Module 1: Show Resource Utilization Dashboards]
+* xref:module-01.adoc[Module 1: Operators and Resource Utilization Dashboards]
 * xref:module-02.adoc[Module 2: Declarative IaC for Automating VM Resources]
 * xref:module-03.adoc[Module 3: Declarative IaC for Automating VM Creation]
 * xref:module-04.adoc[Module 4: Simplified configuration for load balancing]

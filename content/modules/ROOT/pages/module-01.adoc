@@ -38,17 +38,12 @@ The OpenShift Virtualization has already been deployed for you.
 Examine the configuration as follows.
 
 . Navigate to the Installed Operators page, and find the virtualization operator.
-+
-image://module-1-operators-virt.png[Installed Operators]
-+
-
-The OpenShift Virtualization has already been deployed for you.
-Examine the configuration as follows.
-
-. Navigate to the Installed Operators page, and find the virtualization operator.
 Click the Virtualization Operator to examine its custom resources and APIs.
 +
 image://module-1-operators-virt.png[Installed Operators]
++
+The OpenShift Virtualization has already been deployed for you.
+Examine the configuration as follows.
 +
 image::module1-virt-operator.png[OpenShift Virtualization Operator]
 
@@ -57,9 +52,10 @@ image::module1-virt-operator.png[OpenShift Virtualization Operator]
 The Migration Toolkit for Virtualization operator creates the "Migration" tab in the OpenShift console.
 This is where you connect to the VMware cluster you want to migrate VMs from (providers) and create the migration jobs (plans).
 
-NOTE: For security, your user is unable to see the configuration of the Migration Toolkit for Virtualization Operator.
-Please have a close look at the follow image to get a sense of the easy of the operator installation and configuration.
-
+. Go back to the *Installed Opeartors* page and search for `Migration`.
+Examine the Migration Toolkit for Virtualization Operator.
+The toolkit has already been deployed for you.
++
 image::module-1-mtv-operator.png[MTV Operator]
 
 === Resource Utilization

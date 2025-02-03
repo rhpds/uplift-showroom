@@ -1,26 +1,29 @@
-== Module 3: Declarative IaC for Automating VM Creation
+== Module 3: Declarative IaC for Automating virtual machine Creation
 
-Now you will use the YAML tab to automate the creation of a new VM.
-We've provided the two things you require to do this:
-. A virtual machine image of the desired OS, basic configuration, and if appropriate, the apps deployed.
-. The YAML manifest to instruct OpenShift how to deploy this
+Now you will use the YAML tab to automate the creation of a new virtual machine.
+We've provided the two things you need to do this:
+
+. A virtual machine image of the desired OS, its basic configuration, and if appropriate, the apps deployed.
+. The YAML manifest to instruct OpenShift how to deploy the virtual machine.
 
 WARNING: Please don't forget to *delete this new virtual machine `winweb03`* when done with this lab.
 If you do not, there will not be resources available to finish the workshop.
 
-=== Use the YAML manifest to create the VM
+=== Use the YAML manifest to create the virtual machine
 . Make sure you're in the proper namespace by using the *Projects:* drop-down on the top bar to select the *windowsnetworking-{user}* project.
 . Click *VirtualMachines -> Create -> With YAML* in the top right corner.
 +
-image::module-3-create-with-yaml-dropdown.png[Access VM YAML]
+.Locating the new virtual machine page
+image::module-3-create-with-yaml-dropdown.png[Access virtual machine YAML]
 +
 . *Delete the pre-created YAML*.
 *Copy/Paste the YAML template below*.
-Click *Create* and notice the new VM is created.
+Click *Create* and notice the new virtual machine is created.
 +
+.New virtual machine manifest ready to create
 image::module-3-paste-yaml-and-create.png[Paste YAML and Create]
 +
-[,yaml,subs="attributes",role=execute]
+[source,yaml,subs="+attributes",role=execute]
 ----
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
@@ -118,7 +121,9 @@ spec:
 ----
 <1> The virtual machine image
 +
+[.left]
 . Watch the new `winweb03` virtual machine go through three phases:
++
 .. `WaitingForVolumeBinding` - a new storage volume is created for this vm.
 +
 image::module-3-waitingforvolumebinding.png[winweb03 - Waiting for Volume Binding]
@@ -129,11 +134,13 @@ image::module-3-provisioning.png[winweb03 - Provisioning]
 +
 .. `Running` - the virtual machine is available.
 +
+.New virtual machine is running, go ahead and delete it
 image::module-3-running.png[winweb03 - Running]
 +
 . Please *Delete* the new virtual machine to make room on the workshop cluster for later activities.
 .. Click *Actions -> Delete* and then on the nag window, click *Delete* to free up resources.
 +
+.Confirm virtual machine deletion
 image::module-3-vm-deleting.png[winweb03 - Deleting]
 
 WARNING: If you don't delete `winweb03` you are likely not going to be able to finish this workshop.
