@@ -34,9 +34,22 @@ You're now logged in and ready to begin the workshop!
 The OpenShift Virualization operator enables OpenShift to host virtual machines and creates the "Virtualization" tab in the OpenShift console.
 It can be installed simply through the Operator Hub.
 
-NOTE: For security, your user is unable to see the configuration of the OpenShift Virtualization Operator.
-Please have a close look at the follow image to get a sense of the easy of the operator installation and configuration.
+The OpenShift Virtualization has already been deployed for you.
+Examine the configuration as follows.
 
+. Navigate to the Installed Operators page, and find the virtualization operator.
++
+image://module-1-operators-virt.png[Installed Operators]
++
+
+The OpenShift Virtualization has already been deployed for you.
+Examine the configuration as follows.
+
+. Navigate to the Installed Operators page, and find the virtualization operator.
+Click the Virtualization Operator to examine its custom resources and APIs.
++
+image://module-1-operators-virt.png[Installed Operators]
++
 image::module1-virt-operator.png[OpenShift Virtualization Operator]
 
 === The Migration Toolkit for Virtualization
