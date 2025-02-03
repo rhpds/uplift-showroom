@@ -17,13 +17,15 @@ In this final section, we'll show how we can use the advanced network telemetry 
 . From the *namespace* drop-down on the top bar, select your namespace: `windowsmesh-{user}`.
 . Notice that we have a service called `winmesh`.
 +
-image:module-6-kiali-namespace-services.png[Kiali namespace]
+.Find the `winmesh` istio service
+image::module-6-kiali-namespace-services.png[Kiali namespace]
 +
 . *Click the `winmesh` service* - notice that there are two *workloads*, which are our virtual machines, `winweb01` and `winweb02`.
 Though named similarly, these are different virtual machines from the earlier modules virtual machines.
-They have OpenShift Service Mesh enabled, and are in a different Project/namespace.
+They have OpenShift Service Mesh enabled, and are in a different project/namespace.
 +
-image:module-6-kiali-service-winmesh.png[winmesh Service]
+.The `winmesh` istio service and components
+image::module-6-kiali-service-winmesh.png[winmesh Service]
 +
 . In the top right corner, click *Actions* and *Request Routing*
 . Now examine the existing Request Routing configurations.
@@ -32,28 +34,32 @@ image:module-6-kiali-service-winmesh.png[winmesh Service]
 .. Click *Show Advanced Options* at the bottom.
 Notice the *VirtualService Hosts* are prefixed with your username: {user}.
 +
-image:module-6-kiali-request-route-virtual-hosts.png[Request Route VirtualHost]
+.Request routing
+image::module-6-kiali-request-route-virtual-hosts.png[Request Route VirtualHost]
 +
 . Click *Gateways* and click *Add Gateway*. Click *Create Gateway* then click *Preview*.
 +
-image:module-6-kiali-request-route-gateways.png[Request Route Gateway]
+.Service mesh gateways
+image::module-6-kiali-request-route-gateways.png[Request Route Gateway]
 +
 In the Preview popup window you'll see the DestinationRule and VirtualServices.
 The DestinationRule indicates which resources will be part of the VirtualService.
 The VirtualService indicates what percentage of traffic is routed to each of the destinations.
 +
-image:module-6-kiali-request-route-dr-vs.png[DestinationRule and VirtualService]
+.Destination rule and virtual service
+image::module-6-kiali-request-route-dr-vs.png[DestinationRule and VirtualService]
 +
 . There's no need to change any of the settings, so just click *Cancel*.
 . Click *Graph* on the left side.
-. Click the *Display* drop-down box
+. Click the *Display* drop-down box.
 .. Tick *Response Time* to see request latency.
 .. Tick *Throughput* checkbox to see data transfer rate.
 .. Tick *Traffic Distribution* checkbox to view load balancing percentage.
-.. Tick *Traffic Rate* checkbox to see how many requests per second are being sent
+.. Tick *Traffic Rate* checkbox to see how many requests per second are being sent.
 .. Tick *Traffic Animation* checkbox to see little dots representing individual requests.
 +
-image:module-6-kiali-graph-setup.png[Kiali Graph Set Up]
+.Kiali detailed traffic graph
+image::module-6-kiali-graph-setup.png[Kiali Graph Set Up]
 +
 . Notice the panel on the right side that shows request response code (200, 300, 400, 500s)
 

@@ -1,27 +1,29 @@
 == Module 5: Network Egress Firewall
 
 Security is important to every customer.
-The least privilege principle is a common security practice that limits an application's access to only those resources it needs to operate.
-For example, if we know an application does not need access to the internet, we should create a policy to block that application's access to the internet.
+The principle of least privilege is a common security practice that limits an application's access to only those resources it needs to operate.
+For example, if we know an application does not need access to the Internet, we should create a policy to block that application's access to the Internet.
 
 In the real world, customers will solve this challenge with outbound proxies/VLANs/firewalls, but those solutions can be expensive and complex to implement.
 Now we will show OpenShift Virtualization allows us to add an additional layer of security with just a few button clicks.
 
-In this module, you will test blocking egress access from a Windows VM to the Internet with the built-in, cloud native features of OpenShift.
+In this module, you will test blocking egress access from a Windows virtual machine to the Internet with the built-in, cloud native features of OpenShift.
 
-=== Access the Internet through a Windows VM console
+=== Access the Internet through a Windows virtual machine console
 
 . Click *VirtualMachines*, click *winweb01* then click the *Console tab*.
-You are already logged into the windows VM's administrative interface.
+You are already logged into the windows virtual machine's administrative interface.
 +
-image::module-5-winweb01-console.png[Windows VM console]
+.Open the `winweb01` virtual machine console
+image::module-5-winweb01-console.png[Windows virtual machine console]
 
-. *Type 15* and hit *Enter* to start Powershell
+. *Type `15`* and hit *Enter* to start Powershell
 +
+.Start PowerShell
 image::module-5-powershell-01.png[Powershell Activation]
 +
-. *Copy* the following command and *paste* in the VM console with the *special paste button*.
-Click into the VM console and hit *Enter*.
+. *Copy* the following command and *paste* it into the virtual machine console with the *special paste button*.
+Click into the virtual machine console and hit *Enter*.
 Notice that the connection succeeds with `StatusCode: 200`
 +
 [,console,subs="attributes",role=execute]
@@ -29,16 +31,19 @@ Notice that the connection succeeds with `StatusCode: 200`
 curl google.com -UseBasicParsing -TimeoutSec 1 | findstr StatusCode"
 ----
 +
+.PowerShell cURL success: `StatusCode: 200`
 image::module-5-powershell-curl-success.png[Powershell cURL success]
 
 === Implement a Network Policy to Block Egress
 
 . On the left side, click *Networking -> NetworkPolicies -> Create NetworkPolicy*.
 +
+.Begin network policy creation
 image::module-5-netpol-create.png[Create NetworkPolicy]
 +
 . Select the YAML View radio button.
 +
+.Use the YAML manifest to create the network policy
 image::module-5-netpol-complete.png[NetworkPolicy Complete]
 +
 . Replace the sample YAML with the following NetworkPolicy.
@@ -60,14 +65,17 @@ spec:
 +
 . *Click Create* when your console looks as follows.
 
-=== Validate that Internet Access is Blocked from the Windows VM
+=== Validate that Internet Access is Blocked from the Windows virtual machine
 
 . Go back to the Powershell and test the network connection to the Internet.
 *Click Virtualization -> VirtualMachines -> winweb01 -> Console*
 Click into the console and repeat the Internet access test.
 *To run the same command again, press the Up Arrow and hit Enter*
 +
+.Failing the cURL Internet access test
 image::module-5-powershell-curl-failure.png[Powershell cURL failure]
++
+The egress to Internet connection has been denied with a timeout.
 
 === Next Steps
 

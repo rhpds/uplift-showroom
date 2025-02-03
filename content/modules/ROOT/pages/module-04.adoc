@@ -48,7 +48,7 @@ image::module-4-create-service-yaml.png[Create Service YAML,float="none",align="
 This will allow applications within the OpenShift cluster to access these virtual machines through the windowsnetworking Service, aka "load balancer".
 +
 .Examine Pods identified by the label selector
-image:module-4-pods-in-service.png[Pods in Service,float="none",align="left"]
+image::module-4-pods-in-service.png[Pods in Service,float="none",align="left"]
 
 == Set up external access to load balancing
 
@@ -58,7 +58,7 @@ Use a Route to provide external access to the virtuals machines through the inte
 . On the left side, Click *Networking -> Routes* and then click *Create Route*.
 +
 .Begin Route creation
-image:module-4-create-route.png[Create Route,float="none",align="left"]
+image::module-4-create-route.png[Create Route,float="none",align="left"]
 +
 . Use the form to create the Route.
 .. In the *name:* field put `windowsnetworking`.
@@ -70,14 +70,14 @@ image:module-4-create-route.png[Create Route,float="none",align="left"]
 .. Finally, click *Create* in the bottom left corner.
 +
 .Completed Route
-image:module-4-create-route-form.png[Create Route form,float="none",align="left"]
+image::module-4-create-route-form.png[Create Route form,float="none",align="left"]
 +
 . Test the Route.
 In the middle right, find the *Location* section.
 *Click the link to view your load balanced virtual machines.*
 +
-.Functioning application, accessed via the Internet
-image:module-4-test-route.png[Test Route,float="none",align="left"]
+.Functioning application accessed via the Internet
+image::module-4-test-route.png[Test Route,float="none",align="left"]
 +
 . A new browser window opens and accesses the web application.
 +
