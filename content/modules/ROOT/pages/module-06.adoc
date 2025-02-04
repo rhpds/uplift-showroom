@@ -133,7 +133,10 @@ image::module-6-kiali-graph-setup.png[Kiali Graph Set Up,link=self, window=blank
 
 Zoom in and out of the graph to see traffic details.
 
-[[conclusion]]
+== More Resources
+
+https://www.redhat.com/en/resources/getting-started-with-openshift-service-mesh-ebook[Getting start with Red Hat OpenShift Service Mesh]
+
 == Conclusion
 
 The Cloud Native features already present in OpenShift provide a far most robust and complete platform than competing platforms.
