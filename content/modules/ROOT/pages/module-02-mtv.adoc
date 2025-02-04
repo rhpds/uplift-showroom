@@ -1,0 +1,191 @@
+= Migrating Virtual Machines to Red Hat OpenShift for AWS
+
+== Introduction
+
+Replatforming from on-premises virtualization to cloud-based and cloud-native platforms might present a migration challenge.
+But with the right tools, these challenges can become benefits as you *UpLift and Shift*.
+
+* [ ] Virtual machines will likely need to transit the Internet
+* [ ] Migrate configuration to suit different hypervizor (v2v conversion)
+* [ ] At least minor network reconfiguration (network mapping)
+* [ ] Provide new storage for image and application data (storage mapping)
+* [ ] Set up access control and authorizations on target platform
+
+This portion of our lab uses the https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/[Migration Toolkit for Virtualization^] (MTV) to import virtual machines from VMware vSphere to OpenShift. The migration toolkit supports two "modes" of import:
+
+* Cold migration turns off the source virtual machine before starting the migration. This is the default migration type.
+* Warm migration copies data while the source virtual machine continues to run. Once the bulk of data has been migrated, the VM is shutdown and the final data is copied to the destination. The new VM can then be started, resulting in a much shorter period of downtime for the VM-hosted application.
+
+NOTE: The migration toolkit has already been deployed to your cluster using the Operator available in OperatorHub.
+
+ https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.7/html/installing_and_using_the_migration_toolkit_for_virtualization/installing-the-operator_mtv[Documentation for how to install and configure the Operator^] is continuously updated by Red Hat.
+
+If you would like to learn more about how to configure the Migration Toolkit for Virtualization for your own needs, please see the documentation at the following links for:
+
+* https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.7/html/installing_and_using_the_migration_toolkit_for_virtualization/prerequisites_mtv#openstack-prerequisites_mtv[OpenStack^]
+* https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.7/html/installing_and_using_the_migration_toolkit_for_virtualization/prerequisites_mtv#rhv-prerequisites_mtv[Red Hat Virtualization^]
+* https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.7/html/installing_and_using_the_migration_toolkit_for_virtualization/prerequisites_mtv#vmware-prerequisites_mtv[VMware vSphere^]
+
+.*Goals*
+
+* Explore the VMware vSphere environment
+* Review the configuration for the Migration Toolkit for Virtualization (MTV)
+* Create a Migration Plan
+* Migrate VMs into OpenShift Virtualization on Red Hat OpenShift on AWS
+
+[[prerequisites]]
+== Prerequisites for Migrations
+
+The following prerequisites apply to all migrations:
+
+* ISO/CD-ROM disks must be unmounted.
+* Each NIC must contain one IPv4 and/or one IPv6 address.
+* The VM operating system must be certified and supported for use as a guest operating system for https://access.redhat.com/articles/973163#ocpvirt[OpenShift Virtualization^].
+* VM names must contain only lowercase letters (a-z), numbers (0-9), or hyphens (-), up to a maximum of 253 characters. The first and last characters must be alphanumeric. The name must not contain uppercase letters, spaces, periods (.), or special characters.
+* VM names must not duplicate the name of an existing VM in the OpenShift Virtualization environment.
+
+NOTE: The *Migration Toolkit for Virtualization* will automatically assign a new name to a VM that does not comply with the rules, doing so allows the migration to proceed smoothly.
+
+[[migrating_vms]]
+== Migrating Virtual Machines from VMware
+
+A three-tier application has been deployed on VMware for you to migrate to OpenShift.
+
+The application consists of the following four virtual machines:
+
+* One HAproxy system that redirects traffic to the web servers
+* One Linux system running a MariaDB database
+* Two Microsoft Windows servers with IIS hosting a PHP application connecting to the database
+
+For this lab, you will be tasked with migrating three of the four virtual machines using cold migration.
+
+NOTE: You will not need to migrate the HAproxy (load balancer) VM because OpenShift handles network traffic and load balancing natively for VMs connected to the SDN using a *Service*.
+
+=== Review the VMware environment
+
+To help understand the process of mapping resources, such as datastores and port groups, from vSphere into OpenShift's equivalents, storage classes and network attachment definitions, let's begin by reviewing the source environment for the migrations.
+
+. Navigate to VMware vCenter: https://{vcenter_console}[vCenter Console^]
+. Click on *Launch vSphere Client*
+. Login with the following credentials:
+- *User:* {vcenter_full_user}
+- *Password:* {vcenter_password}
+
+. By default you'll land in the *Inventory* view at the top of the navigation tree. Click the *Workloads* icon and expand the navigation tree until you see the folder that matches your username, and the 4 VMs under it. Click the *VMs* tab at the top of the screen to view the VM details.
++
+image::module-02-mtv/00_Workload_VM_List.png[link=self, window=blank, width=100%]
+
+. Change to the *Networks* view, then expand the tree to view the port group used by the virtual machines. Note that the name is *segment-migrating-to-ocpvirt*.
++
+image::module-02-mtv/01_vSphere_Network.png[link=self, window=blank, width=100%]
+
+. Finally, review the datastores in use by browsing to the *Datastores* view. Expand the tree to see the datastores that are attached to the *SDDC-Datacenter*, and optionally browse to the *VMs* sub-tab to view the capacity used by each virtual machine.
++
+image::module-02-mtv/02_vSphere_Datastore.png[link=self, window=blank, width=100%]
+
+=== Review the VMware provider to the migration toolkit
+
+The *Migration Toolkit for Virtualization* (*MTV*) uses the VMware Virtual Disk Development Kit (*VDDK*) SDK to transfer virtual disks from VMware vSphere. The VDDK has already been configured for you in this environment.
+
+. Navigate in the left menu to *Migration* -> *Providers for virtualization*
+. Select project *mtv-{user}*
++
+image::module-02-mtv/03_MTV_Providers.png[link=self, window=blank, width=100%]
++
+[TIP]
+====
+MTV 2.4 and later are project/namespace aware and do not require administrator privileges. You can delegate VM imports to application teams and VM users so that they can self-serve and migrate at their own pace!
+
+Also you may ignore the Inventory server warning. It is not necessary for the remainder of this lab.
+====
+
+. By default, there is a provider called *host* which represents *OpenShift Virtualization* as a target platform.
++
+image::module-02-mtv/04_MTV_Provider_List.png[link=self, window=blank, width=100%]
+
+. The lab is already configured with the VMware provider named *vmware* and it is marked as a migration source.
+
+=== Create a Migration Plan
+
+Now that we have reviewed our environment, and have our providers created, it is time for us to create a Migration Plan. This plan selects which VMs to migrate from VMware vSphere to Red Hat OpenShift Virtualization and specifics about how to execute the migration.
+
+. Navigate in the left menu to *Migration* -> *Plans for virtualization* and press *Create Plan*.
++
+image::module-02-mtv/14_Create_VMWARE_Plan.png[link=self, window=blank, width=100%]
+
+. You will be asked to select the source provider that you intend to migrate from. Click on the *VMware* tile.
++
+image::module-02-mtv/16_VMware_Source_Provider.png[link=self, window=blank, width=100%]
+
+. On the next page select the three VMs you would like to move:
+
+* database-{user}
+* winweb01-{user}
+* winweb02-{user}
+
+. Click *Next*.
++
+image::module-02-mtv/17_VM_Select_VMWARE_Plan.png[link=self, window=blank, width=100%]
+
+. On the next screen you will be tasked with providing details for your migration plan. Several details will already be filled in for you, but you will have to make a few minor modifications to ensure that the VMs land in the correct namespace, and that the networks and storage options map correctly.
++
+Please fill in your migration plan with the following values:
+
+* Plan name: *move-webapp-vmware*
+* Target provider: *host*
+* Target namespace: *vmexamples-{user}*
+* Network map: *Pod Networking*
+* Storage map: *ocs-external-storagecluster-ceph-rbd*
++
+NOTE: Both the Network and Storage map will automatically detect the Network and Datastore that the discovered virtual machines currently make use of on the source provider. You will just need to make sure that their respective values are set correctly on the OpenShift side.
+
+. Click *Create migration plan*.
++
+image::module-02-mtv/18_Create_Migration_Plan.png[link=self, window=blank, width=100%]
+
+. You will be taken to a new screen where you will see that the plan for migration is being made ready.
++
+image::module-02-mtv/19_Migration_Plan_Unready.png[link=self, window=blank, width=100%]
+
+. After a few moments the plan will become *Ready*, click on the blue "Start Migration" button to start the migration process.
++
+image::module-02-mtv/20_Migration_Plan_Ready.png[link=self, window=blank, width=100%]
+
+. You will be presented with a confirmation box to begin the migration, click on the *Start* button.
++
+image::module-02-mtv/21_Confirm_Migrate_Start.png[link=self, window=blank, width=100%]
+
+. A progress bar will appear in the center of the screen along with the status of *0 of 3 VMs migrated*.
++
+image::module-02-mtv/22_VMs_Migrating.png[link=self, window=blank, width=100%]
+
+. Click on the *0 of 3 VMs migrated* link and you will be presented with a page with more details about the migration process.
++
+image::module-02-mtv/23_VMs_Migrating_Details.png[link=self, window=blank, width=100%]
+
+. You can click the drop-down arrow next to the name of each VM being migrated to get additional details about the stages of the migration process.
++
+image::module-02-mtv/24_VM_Migration_Stages.png[link=self, window=blank, width=100%]
++
+[IMPORTANT]
+====
+Having many participants performing the same task in parallel in a simulated lab environment can cause this task to perform much slower than in a real environment. Please be patient with this process as it completes. You may continue with other sections in the roadshow as the migrations complete.
+
+Also the Migration Toolkit Documentation suggests at least a 10Gb connection between the data centers - which is not something that is available in this demo.
+====
+
+. After several minutes the migration has completed.
++
+image::module-02-mtv/25_Completed_VMWARE_Plan.png[link=self, window=blank, width=100%]
+
+. The selected VMs have now been migrated and can be started on OpenShift Virtualization.
+
+== Summary
+
+In this section we explored the Migration Toolkit for Virtualization, and used it to assist with the migration of existing virtual machines from a VMware vSphere environment to OpenShift Virtualization. In addition to the Migration Toolkit for Virtualization, there are three other migration toolkits. The combination of these can be used to move many types of workloads into and within OpenShift clusters depending on your organization's needs.
+
+* https://developers.redhat.com/products/mtr/overview[Migration Toolkit for Runtimes^] - Assist and accelerate Java application modernization and migration.
+* https://access.redhat.com/documentation/en-us/migration_toolkit_for_applications/[Migration Toolkit for Applications^] - Accelerate large-scale application modernization efforts to containers and Kubernetes.
+* https://docs.openshift.com/container-platform/4.15/migration_toolkit_for_containers/about-mtc.html[Migration Toolkit for Containers^] - Migrate stateful application workloads between OpenShift clusters.
+
+For more information about these other migration toolkits, please reach out to your Red Hat account team.
