@@ -1,4 +1,6 @@
-= Welcome to UpLift and Shift: Enhancing Legacy VMs with OpenShift Virtualization Lab
+= UpLift and Shift
+
+*Enhancing Legacy VMs with OpenShift Virtualization on Red Hat OpenShift on AWS*
 
 == Introduction
 
