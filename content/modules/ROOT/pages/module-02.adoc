@@ -1,4 +1,6 @@
-== Module 2: Declarative IaC for Automating VM Resources
+= Declarative IaC for Automating VM Resources
+
+== Introduction
 
 One of the advantages of OpenShift and Kubernetes is that its configuration is managed with declarative YAML manifests.
 The configuration of VMs running on OpenShift is the same.
@@ -6,41 +8,49 @@ In other systems, automating the creation of new virtual machine instances or ma
 
 In this module you will increase the CPU resources dedicated to a VM using techniques easily adopted by any IaC system.
 
+[[validating]]
+== Verifying Initial CPU Core Count
+
 .  To find the VM to change, click on the left bar, *click Virtualization -> VirtualMachines*
 On the top bar, select the *Project `windowsnetworking-{user}`*.
 +
 .Identifying the `winweb01` virtual machine
-image::module-2-find-winweb01-vm.png[Find winweb01 VM,width=50%]
+image::module-2-find-winweb01-vm.png[Find winweb01 VM,width=50%,link=self, window=blank]
 +
 .  *Click on the `winweb01` VM*.
 Notice the CPU | Memory section on the *Overview* tab.
 +
 .CPU and Memory consumption of the VM
-image::module-2-winweb01-cpu-ram.png[winweb01 CPU and RAM]
+image::module-2-winweb01-cpu-ram.png[winweb01 CPU and RAM,link=self, window=blank, width=100%]
 +
 . Verify the number of cores via powershell in the `winweb01` console.
 .. Click on the *Console tab*, and click into the *black console box* to activate input into the VM console.
 .. Start Powershell by *entering `15`* in the menu.
 +
 .Accessing MicroSoft `SConfig`
-image::module-5-powershell-01.png[SConfig]
+image::module-5-powershell-01.png[SConfig,link=self, window=blank, width=100%]
 +
-.. *Copy/Paste* the following command into the VM console with the *Paste button*.
+.. *Copy* the following command into your clipboard.
 +
 [,powershell,subs="attributes",role=execute]
 ----
 Get-CimInstance -ClassName win32_processor | Select NumberofCores
 ----
 +
-.Accessing the console to view number of cores before IaC reconfiguration
-image::module-2-winweb01-numcores-1.png[winweb01 numcores 1]
+. Now *paste* it into the VM console with the *Paste button*.
 +
+.Accessing the console to view number of cores before IaC reconfiguration
+image::module-2-winweb01-numcores-1.png[winweb01 numcores 1,link=self, window=blank, width=100%]
+
+[[increasing]]
+== Increasing CPU Core Count
+
 . To increase the CPU core count via IaC, *click the YAML tab* and scroll down until you see `cpu`.
 On approximately line 190, modify `cores` to increase the core count from *1 to 2*.
 Click *Save*, and then click the *circular arrow* &circlearrowright; to restart the winweb01 VM.
 +
 .Changing the number of cores with a YAML edit
-image::module-2-winweb01-cpu-2-cores.png[winweb01 CPU 2 cores,width=100%]
+image::module-2-winweb01-cpu-2-cores.png[winweb01 CPU 2 cores,link=self, window=blank, width=100%]
 +
 . Wait for the `winweb01` VM to restart.
 . Verify the number of cores via Powershell in the `winweb01` console.
@@ -54,15 +64,16 @@ Get-CimInstance -ClassName win32_processor | Select NumberofCores
 ----
 +
 .Verifying actual change to number of CPUs
-image::module-2-winweb01-numcores-2.png[winweb01 numcores 2]
+image::module-2-winweb01-numcores-2.png[winweb01 numcores 2,link=self, window=blank, width=100%]
 
 NOTE: You can also use Infrastructure as Code to trigger the necessary restart.
 You could  implement a pipeline that reconfigures the virtual machine, then uses a Job running `virtctl` to restart the virtual machine.
 
-=== Next Steps
+[[nextsteps]]
+== Next Steps
 
 Congratulations!
 You have increased the resources available to a virtual machine via Infrastructure as Code.
 You can imagine from this example how you might automate the resource reconfiguration from a IaC tool, or from a pipeline.
 
-Continue to the next module: Automating VM Creation.
+Continue to Declarative IaC for Automating Virtual Machine Creation

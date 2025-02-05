@@ -1,4 +1,6 @@
-== Module 6: Istio Traffic Management
+= Istio Traffic Management for Virtual Machines
+
+== Introduction
 
 In the world of containers, service mesh (or Isitio more specifically) is considered one of the most desirable and transformational kubernetes features.
 Whenever we talk about service mesh, it's in the context of words like *modernized*, *12 factor*, *SOA* and containerized apps - never with legacy virtual machines.
@@ -10,7 +12,8 @@ What tooling exists for those legacy virtual machines to troubleshoot?
 
 In this final section, we'll show how we can use the advanced network telemetry from Istio and Kiali to easily troubleshoot these issues with our legacy windows virtual machines.
 
-=== Access Kiali
+[[accesskiali]]
+== Access Kiali
 
 . Log in to the {kiali_url}[Kiali web interface^] with your username `{user}` and password `{password}`.
 . Within Kiali, click *Services* on the left.
@@ -18,14 +21,14 @@ In this final section, we'll show how we can use the advanced network telemetry 
 . Notice that we have a service called `winmesh`.
 +
 .Find the `winmesh` istio service
-image::module-6-kiali-namespace-services.png[Kiali namespace]
+image::module-6-kiali-namespace-services.png[Kiali namespace,link=self, window=blank, width=100%]
 +
 . *Click the `winmesh` service* - notice that there are two *workloads*, which are our virtual machines, `winweb01` and `winweb02`.
 Though named similarly, these are different virtual machines from the earlier modules virtual machines.
 They have OpenShift Service Mesh enabled, and are in a different project/namespace.
 +
 .The `winmesh` istio service and components
-image::module-6-kiali-service-winmesh.png[winmesh Service]
+image::module-6-kiali-service-winmesh.png[winmesh Service,link=self, window=blank, width=100%]
 +
 . In the top right corner, click *Actions* and *Request Routing*
 . Now examine the existing Request Routing configurations.
@@ -35,21 +38,24 @@ image::module-6-kiali-service-winmesh.png[winmesh Service]
 Notice the *VirtualService Hosts* are prefixed with your username: {user}.
 +
 .Request routing
-image::module-6-kiali-request-route-virtual-hosts.png[Request Route VirtualHost]
+image::module-6-kiali-request-route-virtual-hosts.png[Request Route VirtualHost,link=self, window=blank, width=100%]
 +
 . Click *Gateways* and click *Add Gateway*. Click *Create Gateway* then click *Preview*.
 +
 .Service mesh gateways
-image::module-6-kiali-request-route-gateways.png[Request Route Gateway]
+image::module-6-kiali-request-route-gateways.png[Request Route Gateway,link=self, window=blank, width=100%]
 +
 In the Preview popup window you'll see the DestinationRule and VirtualServices.
 The DestinationRule indicates which resources will be part of the VirtualService.
 The VirtualService indicates what percentage of traffic is routed to each of the destinations.
 +
 .Destination rule and virtual service
-image::module-6-kiali-request-route-dr-vs.png[DestinationRule and VirtualService]
+image::module-6-kiali-request-route-dr-vs.png[DestinationRule and VirtualService,link=self, window=blank, width=100%]
 +
 . There's no need to change any of the settings, so just click *Cancel*.
+
+[[visualizingtraffic]]
+== Visualizating Traffic
 . Click *Graph* on the left side.
 . Click the *Display* drop-down box.
 .. Tick *Response Time* to see request latency.
@@ -59,12 +65,13 @@ image::module-6-kiali-request-route-dr-vs.png[DestinationRule and VirtualService
 .. Tick *Traffic Animation* checkbox to see little dots representing individual requests.
 +
 .Kiali detailed traffic graph
-image::module-6-kiali-graph-setup.png[Kiali Graph Set Up]
+image::module-6-kiali-graph-setup.png[Kiali Graph Set Up,link=self, window=blank, width=100%]
 +
 . Notice the panel on the right side that shows request response code (200, 300, 400, 500s)
 
 Zoom in and out of the graph to see traffic details.
 
+[[conclusion]]
 == Conclusion
 
 The Cloud Native features already present in OpenShift provide a far most robust and complete platform than competing platforms.

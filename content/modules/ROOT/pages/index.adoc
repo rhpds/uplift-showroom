@@ -1,6 +1,6 @@
-== Welcome to UpLift and Shift!
+= Welcome to UpLift and Shift: Enhancing Legacy VMs with OpenShift Virtualization Lab
 
-=== Introduction to the UpLift and Shift: Enhancing Legacy VMs with OpenShift Virtualization Lab
+== Introduction
 
 Welcome to the UpLift and Shift lab, where we explore how OpenShift Virtualization enables organizations to accelerate the migration of traditional virtual machines (VMs) to a modern, cloud-native platform.
 This hands-on experience demonstrates how you can transition VMs from current virtualization environments to a scalable and secure environment powered by Red Hat OpenShift Service on AWS—without sacrificing the stability and reliability you value.
@@ -8,7 +8,6 @@ This hands-on experience demonstrates how you can transition VMs from current vi
 As businesses seek alternatives to traditional virtualization platforms, many face the challenge of balancing speed, cost-efficiency, and modernization.
 Customers who have successfully migrated workloads to public clouds are often familiar with the traditional lift-and-shift approach of moving on-premises workloads to cloud environments.
 While this method simplifies the initial migration, it often presents two primary, often undesirable, options:
-
 
 Application Modernization::
 Re-architect, rewrite, and re-platform legacy applications to align with modern service-oriented architectures.
@@ -23,7 +22,7 @@ The *UpLift and Shift* strategy offers a compelling alternative:
 Migrate VMs to Red Hat OpenShift Service on AWS, where they inherit modern platform features—such as scalability, self-service provisioning, and CI/CD pipeline integration—without requiring changes to the VMs themselves.
 This approach blends the speed and simplicity of lift-and-shift with the added value of advanced functionality, enabling legacy applications to evolve at their own pace.
 
-=== Why OpenShift Virtualization on AWS?
+== Why OpenShift Virtualization on AWS?
 
 *Red Hat OpenShift Virtualization*, available as part of Red Hat OpenShift Service on AWS, provides a fully managed platform to rehouse your VMs onto modern infrastructure without the burden of managing hardware in your datacenter.
 This hybrid cloud solution delivers consistent processes and tools for managing VMs across on-premises, cloud, and edge environments.
@@ -40,6 +39,8 @@ By combining the ease of lift-and-shift with modern cloud-native features, *Open
 
 This lab will guide you through the process of leveraging OpenShift Virtualization to "uplift" your VMs and unlock the potential of hybrid cloud infrastructure—empowering your team to innovate faster and deliver greater value.
 
-=== Next Steps
+== Next Steps
 
 If you would like to learn more about Red Hat OpenShift Virtualization, please visit this https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization[landing page], https://docs.openshift.com/rosa/virt/getting_started/virt-getting-started.html[review the documentation^], or view some of our https://www.youtube.com/watch?v=7EpmmUIhQ7c[demo videos^] on YouTube.
+
+When you're ready, get started with Module 1: Operators, Multi-Tenancy, and Resource Utilization Dashboards

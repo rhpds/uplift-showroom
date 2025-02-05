@@ -1,6 +1,10 @@
-== Module 1: Operators and Resource Utilization Dashboards
+= Operators, Multi-Tenancy, and Resource Utilization Dashboards
 
-=== Accessing the System
+== Introduction
+
+TODO: words about operators, multi-tenancy, dashboards
+
+== Accessing the System
 
 Your workshop environment is on a shared ROSA cluster.
 Other participants in this workshop are also on this cluster, so you have limited access to the behind-the-scenes workings of OpenShift.
@@ -17,17 +21,20 @@ A new browser tab will open.
 . ROSA offers optional integreation with Amazon Cognito, an identity platform for web and mobile apps.
 *Click Cognito*.
 +
-image::module-1-console-login.png[Console Login]
+image::module-1-console-login.png[Console Login,link=self, window=blank, width=100%]
 +
 . *Enter your username `{user}` and password `{password}`*.
 . By default you will be taken to the Developer perspective.
 Change to the Administrator perspective.
 *Click the drop-down menu on the upper left, and select Administrator*.
 +
-image::module-1-administrator.png[Administrator perspective]
+image::module-1-administrator.png[Administrator perspective,link=self, window=blank, width=100%]
 
 Congratulations!
 You're now logged in and ready to begin the workshop!
+
+[[operators]]
+== Review the Operators
 
 === The OpenShift Virtualization Operator
 
@@ -40,14 +47,14 @@ Examine the configuration as follows.
 . Navigate to the Installed Operators page, and find the virtualization operator.
 Click the Virtualization Operator to examine its custom resources and APIs.
 +
-image://module-1-operators-virt.png[Installed Operators]
+image://module-1-operators-virt.png[Installed Operators,link=self, window=blank, width=100%]
 +
 The OpenShift Virtualization has already been deployed for you.
 Examine the configuration as follows.
 +
-image::module1-virt-operator.png[OpenShift Virtualization Operator]
+image::module1-virt-operator.png[OpenShift Virtualization Operator,link=self, window=blank, width=100%]
 
-=== The Migration Toolkit for Virtualization
+== The Migration Toolkit for Virtualization
 
 The Migration Toolkit for Virtualization operator creates the "Migration" tab in the OpenShift console.
 This is where you connect to the VMware cluster you want to migrate VMs from (providers) and create the migration jobs (plans).
@@ -56,9 +63,10 @@ This is where you connect to the VMware cluster you want to migrate VMs from (pr
 Examine the Migration Toolkit for Virtualization Operator.
 The toolkit has already been deployed for you.
 +
-image::module-1-mtv-operator.png[MTV Operator]
+image::module-1-mtv-operator.png[MTV Operator,link=self, window=blank, width=100%]
 
-=== Resource Utilization
+[[resourceutilization]]
+== Resource Utilization
 
 It may seem trivial, but capturing utilization metrics from all VMs isn't simple, particularly in the cloud.
 OpenShift makes this easy by automatically generating these dashboards for every VM you run on OpenShift.
@@ -72,13 +80,14 @@ image::module-1-virtual-machines.png[Virtualization VirtualMachines]
 +
 . *Click on the winweb01* VM to see an Overview of a VM.
 +
-image::module-1-virtual-machine-list.png[Virtual Machines List]
+image::module-1-virtual-machine-list.png[Virtual Machines List,link=self, window=blank, width=100%]
 +
 *Click the "Metrics" tab* to see the resource utilization information for this VM.
 +
-image::module-1-virtual-machine-metrics.png[Virtual Machine Metrics]
+image::module-1-virtual-machine-metrics.png[Virtual Machine Metrics,link=self, window=blank, width=100%]
 
-=== Next Steps
+[[nextsteps]]
+== Next Steps
 
 Congratulations!
 You've begun your exploration of OpenShift Virtualization.

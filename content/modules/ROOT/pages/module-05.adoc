@@ -1,4 +1,6 @@
-== Module 5: Network Egress Firewall
+= Network Egress Firewall
+
+== Introduction
 
 Security is important to every customer.
 The principle of least privilege is a common security practice that limits an application's access to only those resources it needs to operate.
@@ -9,18 +11,19 @@ Now we will show OpenShift Virtualization allows us to add an additional layer o
 
 In this module, you will test blocking egress access from a Windows virtual machine to the Internet with the built-in, cloud native features of OpenShift.
 
-=== Access the Internet through a Windows virtual machine console
+[[access]]
+== Access the Internet from a Windows virtual machine
 
 . Click *VirtualMachines*, click *winweb01* then click the *Console tab*.
 You are already logged into the windows virtual machine's administrative interface.
 +
 .Open the `winweb01` virtual machine console
-image::module-5-winweb01-console.png[Windows virtual machine console]
+image::module-5-winweb01-console.png[Windows virtual machine console,link=self, window=blank, width=100%]
 
 . *Type `15`* and hit *Enter* to start Powershell
 +
 .Start PowerShell
-image::module-5-powershell-01.png[Powershell Activation]
+image::module-5-powershell-01.png[Powershell Activation,link=self, window=blank, width=100%]
 +
 . *Copy* the following command and *paste* it into the virtual machine console with the *special paste button*.
 Click into the virtual machine console and hit *Enter*.
@@ -32,19 +35,20 @@ curl google.com -UseBasicParsing -TimeoutSec 1 | findstr StatusCode"
 ----
 +
 .PowerShell cURL success: `StatusCode: 200`
-image::module-5-powershell-curl-success.png[Powershell cURL success]
+image::module-5-powershell-curl-success.png[Powershell cURL success,link=self, window=blank, width=100%]
 
-=== Implement a Network Policy to Block Egress
+[[policy]]
+== Implement a Network Policy to Block Egress
 
 . On the left side, click *Networking -> NetworkPolicies -> Create NetworkPolicy*.
 +
 .Begin network policy creation
-image::module-5-netpol-create.png[Create NetworkPolicy]
+image::module-5-netpol-create.png[Create NetworkPolicy,link=self, window=blank, width=100%]
 +
 . Select the YAML View radio button.
 +
 .Use the YAML manifest to create the network policy
-image::module-5-netpol-complete.png[NetworkPolicy Complete]
+image::module-5-netpol-complete.png[NetworkPolicy Complete,link=self, window=blank, width=100%]
 +
 . Replace the sample YAML with the following NetworkPolicy.
 +
@@ -65,7 +69,8 @@ spec:
 +
 . *Click Create* when your console looks as follows.
 
-=== Validate that Internet Access is Blocked from the Windows virtual machine
+[[validate]]
+== Validate that Internet Access is Blocked from the Windows virtual machine
 
 . Go back to the Powershell and test the network connection to the Internet.
 *Click Virtualization -> VirtualMachines -> winweb01 -> Console*
@@ -73,13 +78,14 @@ Click into the console and repeat the Internet access test.
 *To run the same command again, press the Up Arrow and hit Enter*
 +
 .Failing the cURL Internet access test
-image::module-5-powershell-curl-failure.png[Powershell cURL failure]
+image::module-5-powershell-curl-failure.png[Powershell cURL failure,link=self, window=blank, width=100%]
 +
 The egress to Internet connection has been denied with a timeout.
 
-=== Next Steps
+[[nextsteps]]
+== Next Steps
 
 Congratulations!
 You have seen how easy it is to leverage cloud native resouces to implement a Network Egress Firewall.
 
-In the next module, you will configure advanced traffic management.
+In the next module, you will configure advanced traffic management with Istio Traffic Management.

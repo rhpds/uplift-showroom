@@ -1,4 +1,6 @@
-== Module 4: Simplified configuration for load balancing
+= Simplified configuration for load balancing
+
+== Introduction
 
 In most systems, load balancing virtual machiness typically requires multiple different tools and configurations to work properly.
 For example, to load balance two virtual machines internally and externally you might have to:
@@ -15,6 +17,7 @@ For example, to load balance two virtual machines internally and externally you 
 OpenShift trivializes networking and load balancing.
 In this module, you'll accomplish all of this, without leaving OpenShift.
 
+[[setupservice]]
 == Set up internal load balancing with Services
 
 Services are internal load balancers in OpenShift.
@@ -29,12 +32,12 @@ It's usualy near line 186.
 This is an arbitrary label assigned to both virtual machines.
 +
 .Identify the label on the virtual machine instance
-image::module-4-find-vm-app-label.png[Find VM label app=winnetworking]
+image::module-4-find-vm-app-label.png[Find VM label app=winnetworking,link=self, window=blank, width=100%]
 +
 . On the left side of the console, click to expand *Networking -> Services* and on the top right corner, click *Create Service*.
 +
 .Begin Service creation
-image::module-4-create-service.png[Create Service button]
+image::module-4-create-service.png[Create Service button,link=self, window=blank, width=100%]
 +
 . Modify the Service to load balance between virtual machines
 .. On line 4, change the *name:* to `windowsnetworking`.
@@ -42,15 +45,16 @@ image::module-4-create-service.png[Create Service button]
 .. Change the *targetPort:* value on line 12 to `80` then *click "Create"* in the bottom left corner
 +
 .Modify the Service configuration
-image::module-4-create-service-yaml.png[Create Service YAML,float="none",align="left"]
+image::module-4-create-service-yaml.png[Create Service YAML,float="none",align="left",link=self, window=blank, width=100%]
 +
 . Click the *Pods tab* and notice that the two `winweb` virtual machines have already registered with the service object.
 This will allow applications within the OpenShift cluster to access these virtual machines through the windowsnetworking Service, aka "load balancer".
 +
 .Examine Pods identified by the label selector
-image::module-4-pods-in-service.png[Pods in Service,float="none",align="left"]
+image::module-4-pods-in-service.png[Pods in Service,float="none",align="left",link=self, window=blank, width=100%]
 
-== Set up external access to load balancing
+[[routes]]
+== Set Up External Access to Load Balancing
 
 OpenShift was the first to introduce the concept of Routes in the early days of Kubernetes.
 Use a Route to provide external access to the virtuals machines through the internal Service, aka, load balancer.
@@ -58,7 +62,7 @@ Use a Route to provide external access to the virtuals machines through the inte
 . On the left side, Click *Networking -> Routes* and then click *Create Route*.
 +
 .Begin Route creation
-image::module-4-create-route.png[Create Route,float="none",align="left"]
+image::module-4-create-route.png[Create Route,float="none",align="left",link=self, window=blank, width=100%]
 +
 . Use the form to create the Route.
 .. In the *name:* field put `windowsnetworking`.
@@ -70,20 +74,21 @@ image::module-4-create-route.png[Create Route,float="none",align="left"]
 .. Finally, click *Create* in the bottom left corner.
 +
 .Completed Route
-image::module-4-create-route-form.png[Create Route form,float="none",align="left"]
+image::module-4-create-route-form.png[Create Route form,float="none",align="left",link=self, window=blank, width=100%]
 +
 . Test the Route.
 In the middle right, find the *Location* section.
 *Click the link to view your load balanced virtual machines.*
 +
 .Functioning application accessed via the Internet
-image::module-4-test-route.png[Test Route,float="none",align="left"]
+image::module-4-test-route.png[Test Route,float="none",align="left",link=self, window=blank, width=100%]
 +
 . A new browser window opens and accesses the web application.
 +
-image:module-4-web-application.png[Web Application,float="none",align="left"]
+image:module-4-web-application.png[Web Application,float="none",align="left",link=self, window=blank, width=100%]
 
-=== Next Steps
+[[nextsteps]]
+== Next Steps
 
 Congratulations!
 You've implemented internal load balancing through kubernetes Services, and accessed them via the Internet through OpenShift Routes.

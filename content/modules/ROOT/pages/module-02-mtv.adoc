@@ -1,4 +1,4 @@
-= Migrating Virtual Machines to Red Hat OpenShift for AWS
+= Migrating Virtual Machines to ROSA
 
 == Introduction
 
@@ -18,7 +18,7 @@ This portion of our lab uses the https://access.redhat.com/documentation/en-us/m
 
 NOTE: The migration toolkit has already been deployed to your cluster using the Operator available in OperatorHub.
 
- https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.7/html/installing_and_using_the_migration_toolkit_for_virtualization/installing-the-operator_mtv[Documentation for how to install and configure the Operator^] is continuously updated by Red Hat.
+https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.7/html/installing_and_using_the_migration_toolkit_for_virtualization/installing-the-operator_mtv[Documentation for how to install and configure the Operator^] is continuously updated by Red Hat.
 
 If you would like to learn more about how to configure the Migration Toolkit for Virtualization for your own needs, please see the documentation at the following links for:
 
@@ -180,12 +180,15 @@ image::module-02-mtv/25_Completed_VMWARE_Plan.png[link=self, window=blank, width
 
 . The selected VMs have now been migrated and can be started on OpenShift Virtualization.
 
+[[summary]]
 == Summary
 
 In this section we explored the Migration Toolkit for Virtualization, and used it to assist with the migration of existing virtual machines from a VMware vSphere environment to OpenShift Virtualization. In addition to the Migration Toolkit for Virtualization, there are three other migration toolkits. The combination of these can be used to move many types of workloads into and within OpenShift clusters depending on your organization's needs.
 
+[[nextsteps]]
+== Next Steps
 * https://developers.redhat.com/products/mtr/overview[Migration Toolkit for Runtimes^] - Assist and accelerate Java application modernization and migration.
 * https://access.redhat.com/documentation/en-us/migration_toolkit_for_applications/[Migration Toolkit for Applications^] - Accelerate large-scale application modernization efforts to containers and Kubernetes.
 * https://docs.openshift.com/container-platform/4.15/migration_toolkit_for_containers/about-mtc.html[Migration Toolkit for Containers^] - Migrate stateful application workloads between OpenShift clusters.
 
-For more information about these other migration toolkits, please reach out to your Red Hat account team.
+Continue on to Module 3: Declarative IaC for Automating VM Resources
