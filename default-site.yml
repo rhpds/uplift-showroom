@@ -2,6 +2,7 @@
 site:
   title: Uplift and Shift with ROSA
   # url: https://redhat.com
+  start_page: modules::index.adoc
 
 content:
   sources:
