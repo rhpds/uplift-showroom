@@ -12,8 +12,44 @@ What tooling exists for those legacy virtual machines to troubleshoot?
 
 In this final section, we'll show how we can use the advanced network telemetry from Istio and Kiali to easily troubleshoot these issues with our legacy windows virtual machines.
 
+[[prepinfo]]
+== Prepare Information
+
+You're creating several resources via the GUI:
+
+====
+    Route
+        (Ingress into the cluster)
+        ↓
+    Gateway
+        (Handles incoming traffic to the mesh)
+        ↓
+    VirtualService
+        (Defines routing rules in the mesh)
+        ↓
+    DestinationRule
+        (Defines traffic policies to the VMs)
+====
+
+Prepare to enable your app with service mesh by gathering the following information:
+
+[[getroute]]
+=== Get your Route
+
+The DestinationRule defines the policy with a number of factors.
+DestinationRules have a `host` parameter which identifies the source of the traffic.
+We'll use the ingress Route that's already been created for you as that value.
+
+Use the OpenShift console to locate your {user} Route and copy it to use soon in the DestinationRule.
+
+. Click *Networking -> Routes*, make sure that the *Project `istio-system` is selected.
+. Identify your route as matching your user name: `{user}`
+. Copy the route location with the copy button.
++
+image::module-6-get-route.png[Route,link=self, window=blank, width=100%]
+
 [[accesskiali]]
-== Access Kiali
+== Access Service Mesh and Locate resources
 
 . Log in to the {kiali_url}[Kiali web interface^] with your username `{user}` and password `{password}`.
 . Within Kiali, click *Services* on the left.
@@ -26,33 +62,59 @@ image::module-6-kiali-namespace-services.png[Kiali namespace,link=self, window=b
 . *Click the `winmesh` service* - notice that there are two *workloads*, which are our virtual machines, `winweb01` and `winweb02`.
 Though named similarly, these are different virtual machines from the earlier modules virtual machines.
 They have OpenShift Service Mesh enabled, and are in a different project/namespace.
+
+== Create Request Routing for your winmesh Service
+
+CAUTION: This is the complicated part, pay attention.
+
+You will use the web interface to create the service mesh resources to serve up your application.
+You'll learn how the resources fit together.
+
+// start do content.mode == workshop/demo here
+
+. In the top right corner, click *Actions* and *Request Routing*
 +
 .The `winmesh` istio service and components
 image::module-6-kiali-service-winmesh.png[winmesh Service,link=self, window=blank, width=100%]
 +
-. In the top right corner, click *Actions* and *Request Routing*
-. Now examine the existing Request Routing configurations.
-.. Click *Route To* and notice the two virtual machines are listed.
-.. Notice that there's already a *Route Rule* to do 50/50 load balancing.
-.. Click *Show Advanced Options* at the bottom.
-Notice the *VirtualService Hosts* are prefixed with your username: {user}.
+. Click *Route To* and notice the two virtual machines are listed.
+. Notice that there's already a *Route Rule* to do 50/50 load balancing.
+. *Click Add Route Rule* to add that rule to what will become your VirtualService
+. Click *Show Advanced Options* at the bottom.
+. *Replace Virtual Service Hosts* by pasting your Route from above.
+This will populate a new VirtualService resource with the route to your Virtual Machines.
 +
 .Request routing
 image::module-6-kiali-request-route-virtual-hosts.png[Request Route VirtualHost,link=self, window=blank, width=100%]
 +
-. Click *Gateways* and click *Add Gateway*. Click *Create Gateway* then click *Preview*.
+. Click *Gateways* and click *Add Gateway*.
+. Click *Create Gateway*.
+. Paste your Route into *Gateway Hosts* to identify the source of the traffic which the Gateway will direct into the mesh.
+. *Remove the `https://` from the Gateway Hosts name*
 +
 .Service mesh gateways
-image::module-6-kiali-request-route-gateways.png[Request Route Gateway,link=self, window=blank, width=100%]
+// image::module-6-kiali-select-request-route-gateways.png[Request Route Gateway,link=self, window=blank, width=100%]
+image::module-6-kiali-create-request-route-gateways.png[Request Route Gateway,link=self, window=blank, width=100%]
 +
-In the Preview popup window you'll see the DestinationRule and VirtualServices.
+// end content.mode == workshop/demo here
+In the Preview popup window you'll see the DestinationRule, Gateway, and VirtualService.
 The DestinationRule indicates which resources will be part of the VirtualService.
 The VirtualService indicates what percentage of traffic is routed to each of the destinations.
 +
 .Destination rule and virtual service
-image::module-6-kiali-request-route-dr-vs.png[DestinationRule and VirtualService,link=self, window=blank, width=100%]
+//image::module-6-kiali-request-route-dr-vs.png[DestinationRule and VirtualService,link=self, window=blank, width=100%]
+image::module-6-kiali-request-route-dr-vs-gw.png[DestinationRule Gateway and VirtualService,link=self, window=blank, width=100%]
 +
-. There's no need to change any of the settings, so just click *Cancel*.
+. Review the settings that you just configured and click *Create*.
+. Clear away the confirmation dialog box.
++
+image::module-6-create-nag.png[Create nag box,link=self, window=blank, width=100%]
+
+Your mesh should now be configured.
+
+image::module-6-overview-deployed.png[Overview deployed,link=self, window=blank, width=100%]
+
+NOTE: You'll likey have to wait a minute or two for the graph visualization to appear in the *Overview* page.
 
 [[visualizingtraffic]]
 == Visualizating Traffic
