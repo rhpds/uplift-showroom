@@ -158,7 +158,8 @@ This detailed guide is used by our Services teams to help customers understand a
 
 https://www.redhat.com/en/resources/getting-started-with-openshift-service-mesh-ebook[Getting start with Red Hat OpenShift Service Mesh]
 
-== Conclusion
+[[congratulations]]
+== Congratulations
 
 The Cloud Native features already present in OpenShift provide a far most robust and complete platform than competing platforms.
 

@@ -151,10 +151,7 @@ image::module-3-vm-deleting.png[winweb03 - Deleting,link=self, window=blank, wid
 
 WARNING: If you don't delete `winweb03` you are likely not going to be able to finish this workshop.
 
-[[nextsteps]]
-== Next Steps
+[[congratulations]]
+== Congratulations
 
-Congratulations!
 You created a virtual machine with nothing but a YAML manifest and a virtual machine image file.
-
-Now, move on to Module 5:

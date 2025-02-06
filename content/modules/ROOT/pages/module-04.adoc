@@ -87,10 +87,7 @@ image::module-4-test-route.png[Test Route,float="none",align="left",link=self, w
 +
 image:module-4-web-application.png[Web Application,float="none",align="left",link=self, window=blank, width=100%]
 
-[[nextsteps]]
-== Next Steps
+[[congratulations]]
+== Congratulations
 
-Congratulations!
 You've implemented internal load balancing through kubernetes Services, and accessed them via the Internet through OpenShift Routes.
-
-Move on to the next module, where you will set up a Network Egress Firewall.

@@ -82,10 +82,7 @@ image::module-5-powershell-curl-failure.png[Powershell cURL failure,link=self, w
 +
 The egress to Internet connection has been denied with a timeout.
 
-[[nextsteps]]
-== Next Steps
+[[congratulations]]
+== Congratulations
 
-Congratulations!
 You have seen how easy it is to leverage cloud native resouces to implement a Network Egress Firewall.
-
-In the next module, you will configure advanced traffic management with Istio Traffic Management.

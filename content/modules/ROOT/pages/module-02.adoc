@@ -69,11 +69,8 @@ image::module-2-winweb01-numcores-2.png[winweb01 numcores 2,link=self, window=bl
 NOTE: You can also use Infrastructure as Code to trigger the necessary restart.
 You could  implement a pipeline that reconfigures the virtual machine, then uses a Job running `virtctl` to restart the virtual machine.
 
-[[nextsteps]]
-== Next Steps
+[[congratulations]]
+== Congratulations
 
-Congratulations!
 You have increased the resources available to a virtual machine via Infrastructure as Code.
 You can imagine from this example how you might automate the resource reconfiguration from a IaC tool, or from a pipeline.
-
-Continue to Declarative IaC for Automating Virtual Machine Creation

@@ -86,10 +86,8 @@ image::module-1-virtual-machine-list.png[Virtual Machines List,link=self, window
 +
 image::module-1-virtual-machine-metrics.png[Virtual Machine Metrics,link=self, window=blank, width=100%]
 
-[[nextsteps]]
-== Next Steps
+[[congratulations]]
+== Congratulations
 
 Congratulations!
 You've begun your exploration of OpenShift Virtualization.
-
-Now move on to Module 2: Declarative Infrastructure as Code (IaC) for Automating VM Resources
