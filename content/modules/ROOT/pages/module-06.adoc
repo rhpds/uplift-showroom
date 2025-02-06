@@ -34,7 +34,7 @@ You're creating several resources via the GUI:
 Prepare to enable your app with service mesh by gathering the following information:
 
 [[getroute]]
-=== Get your Route
+=== Get your Route, test your Route
 
 The DestinationRule defines the policy with a number of factors.
 DestinationRules have a `host` parameter which identifies the source of the traffic.
@@ -47,6 +47,10 @@ Use the OpenShift console to locate your {user} Route and copy it to use soon in
 . Copy the route location with the copy button.
 +
 image::module-6-get-route.png[Route,link=self, window=blank, width=100%]
+. *Click the arrow to browse to the application*.
+It should be down, responding with "Application is not available."
+This is because there are no services configured for the route to send traffic to.
+Instead of setting up a kubernetes service, lets's set up  service mesh!
 
 [[accesskiali]]
 == Access Service Mesh and Locate resources
@@ -118,6 +122,11 @@ NOTE: You'll likey have to wait a minute or two for the graph visualization to a
 
 [[visualizingtraffic]]
 == Visualizating Traffic
+
+We've deployed a load-generation tool along side these virtual machines to aide in load visualization.
+It provides traffic through your mesh to your application to mimic a live application receiving traffic.
+When we finally see this application exposed through the service mesh and Route, we'll see a high visitor count because of the load-generator.
+
 . Click *Graph* on the left side.
 . Click the *Display* drop-down box.
 .. Tick *Response Time* to see request latency.
@@ -132,6 +141,16 @@ image::module-6-kiali-graph-setup.png[Kiali Graph Set Up,link=self, window=blank
 . Notice the panel on the right side that shows request response code (200, 300, 400, 500s)
 
 Zoom in and out of the graph to see traffic details.
+
+== Verify your application is accessible
+
+Now that the service mesh is set up, we can access the application via the Internet through the Route.
+
+. Paste your appliation Route into your browser.
+. The application should be working, and we have a high number of application
++
+.The application served by service mesh with load-generated high visitor count
+image::module-6-many-visitors.png[Kiali Graph Set Up,link=self, window=blank, width=100%]
 
 == More Resources
 
