@@ -154,6 +154,8 @@ image::module-6-many-visitors.png[Kiali Graph Set Up,link=self, window=blank, wi
 
 == More Resources
 
+This detailed guide is used by our Services teams to help customers understand a typical service mesh use case and configuration details.
+
 https://www.redhat.com/en/resources/getting-started-with-openshift-service-mesh-ebook[Getting start with Red Hat OpenShift Service Mesh]
 
 == Conclusion
