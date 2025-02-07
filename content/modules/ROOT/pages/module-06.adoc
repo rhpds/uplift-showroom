@@ -42,7 +42,7 @@ We'll use the ingress Route that's already been created for you as that value.
 
 Use the OpenShift console to locate your {user} Route and copy it to use soon in the DestinationRule.
 
-. Click *Networking -> Routes*, make sure that the *Project `istio-system` is selected.
+. Click *Networking -> Routes*, make sure that the *Project `istio-system`* is selected.
 . Identify your route as matching your user name: `{user}`
 . Copy the route location with the copy button.
 +
