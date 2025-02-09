@@ -53,8 +53,18 @@ This is because there are no services configured for the route to send traffic t
 Instead of setting up a kubernetes service, lets's set up  service mesh!
 
 [[accesskiali]]
-== Access Service Mesh and Locate resources
+== Access Service Mesh UI and Locate resources
 
+=== Access the Service Mesh UI: Kiali
+
+
+. Log in to the {openshift_console_url}[OpenShift Console] via Cogito as `{user}` with password `{password}`.
+. Change to the Administrator perspective, in the dropdown on the left.
+. To find the Kiali web ui, click *Home -> Projects -> `istio-system`*.
+Click the link on the right side *Launcher* *Kiali* image:fa-external-link-alt.png[]
++
+image::module-6-kiali-link.png[Kiali route link,link=self, window=blank, width=100%]
++
 . Log in to the {kiali_url}[Kiali web interface^] with your username `{user}` and password `{password}`.
 . Within Kiali, click *Services* on the left.
 . From the *namespace* drop-down on the top bar, select your namespace: `windowsmesh-{user}`.
