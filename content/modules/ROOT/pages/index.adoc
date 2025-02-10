@@ -1,4 +1,4 @@
-= UpLift and Shift
+= Introducing UpLift and Shift
 
 *Enhancing Legacy VMs with OpenShift Virtualization on Red Hat OpenShift on AWS*
 
