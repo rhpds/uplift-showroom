@@ -108,4 +108,5 @@ image::module-1-virtual-machine-metrics.png[Virtual Machine Metrics,link=self, w
 
 Congratulations!
 
-You've begun your exploration of OpenShift Virtualization, getting acquinted with the essential dashboards for managing your virtual machines on ROSA.
+You've begun your exploration of OpenShift Virtualization.
+You now have a basic acquintance with the essential dashboards for managing your virtual machines on ROSA.
