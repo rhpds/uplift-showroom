@@ -1,5 +1,6 @@
+---
 name: modules
-title: UpLift and Shift
+title: Lab 02 - UpLift and Shift
 version: master
 nav:
   - modules/ROOT/nav.adoc
@@ -22,6 +23,6 @@ asciidoc:
     - url: https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization
       text: Landing Page
     - url: https://docs.openshift.com/rosa/virt/getting_started/virt-getting-started.html
-      text: Documentation
+      text: ROSA Documentation
     - url: https://www.youtube.com/watch?v=7EpmmUIhQ7c
       text: Demo Videos
