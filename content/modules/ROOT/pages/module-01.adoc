@@ -1,8 +1,23 @@
-= Operators, Multi-Tenancy, and Resource Utilization Dashboards
+= Dashboards: Operators, Multi-Tenancy, and Resource Utilization
 
 == Introduction
 
-TODO: words about operators, multi-tenancy, dashboards
+Red Hat OpenShift for AWS (ROSA) is a robust, extensible, multi-tenant, and richely informative platform for applications.
+
+ROSA is OpenShift, enjoying a rich ecosystem of Operators.
+Operators offer easy-to-manage installations of layered products on top of OpenShift.
+Red Hat offers dozens of fully-supported products through the Operator Catalogs.
+The number of available operators increases to the hundreds through our Partner Catalogs, all certified by Red Hat.
+
+Multi-tenancy in OpenShift is easy to manage, and based on 10+ years of collaboration with the wider Kubernetes community.
+Projects (aka Namespaces) are the core of this capability.
+
+In this workshop you, and all the other participants, have dedicated OpenShift users all on the same ROSA cluster.
+Your OpenShift user will have full access to two namespaces dedicated to your virtual machines and applications.
+Your OpenShift user also has limited permissions in some other namespaces, to facilitate information gathering and networking data transit.
+
+The OpenShift dashboards are robust and configurable gathering points for all aspects of the cluster - especially the virtual machines running on the cluster.
+Let's take some time now to review those dashboards.
 
 == Accessing the System
 
@@ -54,6 +69,7 @@ Examine the configuration as follows.
 +
 image::module1-virt-operator.png[OpenShift Virtualization Operator,link=self, window=blank, width=100%]
 
+////
 == The Migration Toolkit for Virtualization
 
 The Migration Toolkit for Virtualization operator creates the "Migration" tab in the OpenShift console.
@@ -64,6 +80,7 @@ Examine the Migration Toolkit for Virtualization Operator.
 The toolkit has already been deployed for you.
 +
 image::module-1-mtv-operator.png[MTV Operator,link=self, window=blank, width=100%]
+////
 
 [[resourceutilization]]
 == Resource Utilization
@@ -90,4 +107,5 @@ image::module-1-virtual-machine-metrics.png[Virtual Machine Metrics,link=self, w
 == Congratulations
 
 Congratulations!
-You've begun your exploration of OpenShift Virtualization.
+
+You've begun your exploration of OpenShift Virtualization, getting acquinted with the essential dashboards for managing your virtual machines on ROSA.
