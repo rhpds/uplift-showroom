@@ -12,9 +12,12 @@ The number of available operators increases to the hundreds through our Partner 
 Multi-tenancy in OpenShift is easy to manage, and based on 10+ years of collaboration with the wider Kubernetes community.
 Projects (aka Namespaces) are the core of this capability.
 
-In this workshop you, and all the other participants, have dedicated OpenShift users all on the same ROSA cluster.
-Your OpenShift user will have full access to two namespaces dedicated to your virtual machines and applications.
-Your OpenShift user also has limited permissions in some other namespaces, to facilitate information gathering and networking data transit.
+This workshop is an excellent example of multi-tenancy.
+You and all the other participants have dedicated OpenShift users and projects all on the same ROSA cluster.
+Your OpenShift user has full access to the two namespaces dedicated to your virtual machines and applications.
+Your OpenShift user has limited permissions to some other namespaces.
+You'll see these Projects appearing in the web console.
+They facilitate information gathering and networking data transit.
 
 The OpenShift dashboards are robust and configurable gathering points for all aspects of the cluster - especially the virtual machines running on the cluster.
 Let's take some time now to review those dashboards.
