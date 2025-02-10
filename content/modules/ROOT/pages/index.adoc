@@ -43,6 +43,7 @@ This lab will guide you through the process of leveraging OpenShift Virtualizati
 
 == Next Steps
 
-If you would like to learn more about Red Hat OpenShift Virtualization, please visit this https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization[landing page], https://docs.openshift.com/rosa/virt/getting_started/virt-getting-started.html[review the documentation^], or view some of our https://www.youtube.com/watch?v=7EpmmUIhQ7c[demo videos^] on YouTube.
-
-When you're ready, get started with Module 1: Operators, Multi-Tenancy, and Resource Utilization Dashboards
+If you would like to learn more about Red Hat OpenShift Virtualization, please visit
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization[OpenShift Virtualization landing page]
+* https://docs.openshift.com/rosa/virt/getting_started/virt-getting-started.html[OpenShift Virtualization documentation^]
+* Watch some of our https://www.youtube.com/watch?v=7EpmmUIhQ7c[demo videos on YouTube^].
