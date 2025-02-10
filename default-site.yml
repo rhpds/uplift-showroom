@@ -1,7 +1,6 @@
 ---
 site:
-  title: Uplift and Shift with ROSA
-  # url: https://redhat.com
+  title: Lab 02 - Uplift and Shift with ROSA
   start_page: modules::index.adoc
 
 content:
