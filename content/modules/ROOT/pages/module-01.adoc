@@ -2,7 +2,7 @@
 
 == Introduction
 
-Red Hat OpenShift for AWS (ROSA) is a robust, extensible, multi-tenant, and richely informative platform for applications.
+Red Hat OpenShift for AWS (ROSA) is a robust, extensible, multi-tenant, and informative platform for applications.
 
 ROSA is OpenShift, enjoying a rich ecosystem of Operators.
 Operators offer easy-to-manage installations of layered products on top of OpenShift.
