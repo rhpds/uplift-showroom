@@ -31,7 +31,7 @@ Notice that the connection succeeds with `StatusCode: 200`
 +
 [,console,subs="attributes",role=execute]
 ----
-curl google.com -UseBasicParsing -TimeoutSec 1 | findstr StatusCode"
+curl google.com -UseBasicParsing -TimeoutSec 1 | findstr StatusCode
 ----
 +
 .PowerShell cURL success: `StatusCode: 200`
