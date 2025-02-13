@@ -34,7 +34,7 @@ You'll be doing this whole workshop through the OpenShift Console.
 
 TIP: If you're on an ordinary laptop, the workshop experience is best done at full-screen.  The OpenShift Console is a robust interface, and you'll have the best experience in full screen mode.  Switch between these instructions and the OpenShift Console as you progress through these instructions.
 
-. *Click the {openshift_console_url}[OpenShift Console^]*.
+. *Open the {openshift_console_url}[OpenShift Console^]*.
 A new browser tab will open.
 . ROSA offers optional integreation with Amazon Cognito, an identity platform for web and mobile apps.
 *Click Cognito*.
