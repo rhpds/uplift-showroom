@@ -47,11 +47,12 @@ image::module-2-winweb01-numcores-1.png[winweb01 numcores 1,link=self, window=bl
 
 . To increase the CPU core count via IaC, *click the YAML tab* and scroll down until you see `cpu`.
 On approximately line 190, modify `cores` to increase the core count from *1 to 2*.
-Click *Save*, and then click the *circular arrow* &circlearrowright; to restart the winweb01 VM.
+. Click *Save*
 +
 .Changing the number of cores with a YAML edit
 image::module-2-winweb01-cpu-2-cores.png[winweb01 CPU 2 cores,link=self, window=blank, width=100%]
 +
+. To restart the winweb01 VM, click the *circular arrow* &circlearrowright;.
 . Wait for the `winweb01` VM to restart.
 . Verify the number of cores via Powershell in the `winweb01` console.
 .. Click on the *Console* tab, and click into the black console box to activate input into the VM console.
