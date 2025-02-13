@@ -156,7 +156,7 @@ Zoom in and out of the graph to see traffic details.
 
 Now that the service mesh is set up, we can access the application via the Internet through the Route.
 
-. Paste your appliation Route into your browser.
+. Paste your application Route into your browser.
 . The application should be working, and we have a high number of application
 +
 .The application served by service mesh with load-generated high visitor count
