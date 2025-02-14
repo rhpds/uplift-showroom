@@ -86,6 +86,15 @@ image::module-4-test-route.png[Test Route,float="none",align="left",link=self, w
 . A new browser window opens and accesses the web application.
 +
 image:module-4-web-application.png[Web Application,float="none",align="left",link=self, window=blank, width=100%]
++
+. Routes are implemented by HAProxy inside OpenShift.
+By default, they are sticky sessions based on cookies.
+If you'd like, update the Route to disable cookies and sticky sessions.
++
+[,sh,role=execute]
+----
+oc annotate route windowsnetworking haproxy.router.openshift.io/disable_cookies='true'
+----
 
 [[congratulations]]
 == Congratulations
