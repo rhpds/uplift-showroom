@@ -37,6 +37,13 @@ image::module-5-powershell-01.png[SConfig,link=self, window=blank, width=100%]
 Get-CimInstance -ClassName win32_processor | Select NumberofCores
 ----
 +
+For reference, you get get the physical MEMORY of the Windows virtual machine as follows
++
+[,powershell]
+----
+(Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property capacity -Sum).sum /1gb
+----
++
 . Now *paste* it into the VM console with the *Paste button*.
 +
 .Accessing the console to view number of cores before IaC reconfiguration
