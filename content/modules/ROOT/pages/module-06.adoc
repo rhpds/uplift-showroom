@@ -12,6 +12,39 @@ What tooling exists for those legacy virtual machines to troubleshoot?
 
 In this final section, we'll show how we can use the advanced network telemetry from Istio and Kiali to easily troubleshoot these issues with our legacy windows virtual machines.
 
+== Remove the Service and Route
+
+The Service and Route created in the previous modules are no longer necessary.
+Service Mesh will replace these features with a far more robust solution.
+
+CAUTION: Make sure you're in your `windowsmesh-{user}` namespace.
+
+. From the OpenShift Console, on the left, click *Networking -> Services* and delete all the services you find.
+. To delete the route, click *Networking -> Routes* and delete all the routes you find.
+
+Now you can proceed to replace these features with the Service Mesh.
+
+== Enable Service Mesh in Your Namespace
+
+The administrators have already given your user permissions to activate the service mesh for your namespace.
+Ask your instructor if you are interested in learning how this was achieved.
+
+To enable the Service Mesh for your namespace
+. *click the Plus sign on the upper right of the OpenShift Console*.
+. Paste the following YAML.
+[source,yaml,subs="+attributes",role=execute]
+----
+apiVersion: maistra.io/v1
+kind: ServiceMeshMember
+metadata:
+  name: default
+  namespace: windowsmesh-{user}
+spec:
+  controlPlaneRef:
+    namespace: istio-system
+    name: basic
+----
+
 [[prepinfo]]
 == Prepare Information
 
