@@ -57,9 +57,9 @@ The application consists of the following four virtual machines:
 * One Linux system running a MariaDB database
 * Two Microsoft Windows servers with IIS hosting a PHP application connecting to the database
 
-For this lab, you will be tasked with migrating three of the four virtual machines using cold migration.
+In the interest of time and conserving resources, you will be tasked with migrating only one of the four virtual machines using cold migration.
 
-NOTE: You will not need to migrate the HAproxy (load balancer) VM because OpenShift handles network traffic and load balancing natively for VMs connected to the SDN using a *Service*.
+NOTE: Even in production you will not need to migrate the HAproxy (load balancer) VM because OpenShift handles network traffic and load balancing natively for VMs connected to the SDN using a *Service*. This is covered in later modules of this workshop.
 
 === Review the VMware environment
 
@@ -120,11 +120,10 @@ image::module-02-mtv/14_Create_VMWARE_Plan.png[link=self, window=blank, width=10
 +
 image::module-02-mtv/16_VMware_Source_Provider.png[link=self, window=blank, width=100%]
 
-. On the next page select the three VMs you would like to move:
+. Just migrate one virtual machine, to save time and resources.
+On the next page select the three VMs you would like to move:
 
 * database-{user}
-* winweb01-{user}
-* winweb02-{user}
 
 . Click *Next*.
 +
@@ -136,9 +135,9 @@ Please fill in your migration plan with the following values:
 
 * Plan name: *move-webapp-vmware*
 * Target provider: *host*
-* Target namespace: *vmexamples-{user}*
-* Network map: *Pod Networking*
-* Storage map: *ocs-external-storagecluster-ceph-rbd*
+* Target namespace: *mtv-{user}*
+* Network mappings: *Pod Networking*
+* Storage mappings: *gp3*
 +
 NOTE: Both the Network and Storage map will automatically detect the Network and Datastore that the discovered virtual machines currently make use of on the source provider. You will just need to make sure that their respective values are set correctly on the OpenShift side.
 
@@ -149,6 +148,9 @@ image::module-02-mtv/18_Create_Migration_Plan.png[link=self, window=blank, width
 . You will be taken to a new screen where you will see that the plan for migration is being made ready.
 +
 image::module-02-mtv/19_Migration_Plan_Unready.png[link=self, window=blank, width=100%]
++
+NOTE: This delay is caused by the automatic verification of the VDDK image.
+You can scoll to the bottom of the screen to see it progress.
 
 . After a few moments the plan will become *Ready*, click on the blue "Start Migration" button to start the migration process.
 +
@@ -158,11 +160,11 @@ image::module-02-mtv/20_Migration_Plan_Ready.png[link=self, window=blank, width=
 +
 image::module-02-mtv/21_Confirm_Migrate_Start.png[link=self, window=blank, width=100%]
 
-. A progress bar will appear in the center of the screen along with the status of *0 of 3 VMs migrated*.
+. A progress bar will appear in the center of the screen along with the status of *0 of 1 VMs migrated*.
 +
 image::module-02-mtv/22_VMs_Migrating.png[link=self, window=blank, width=100%]
 
-. Click on the *0 of 3 VMs migrated* link and you will be presented with a page with more details about the migration process.
+. Click on the *0 of 1 VMs migrated* link and you will be presented with a page with more details about the migration process.
 +
 image::module-02-mtv/23_VMs_Migrating_Details.png[link=self, window=blank, width=100%]
 
@@ -177,11 +179,8 @@ Having many participants performing the same task in parallel in a simulated lab
 Also the Migration Toolkit Documentation suggests at least a 10Gb connection between the data centers - which is not something that is available in this demo.
 ====
 
-. After several minutes the migration has completed.
-+
-image::module-02-mtv/25_Completed_VMWARE_Plan.png[link=self, window=blank, width=100%]
-
-. The selected VMs have now been migrated and can be started on OpenShift Virtualization.
+NOTE: Please do not wait for this VMs to be migrated.
+We will return to it at a later point in the lab.
 
 [[summary]]
 == Summary
