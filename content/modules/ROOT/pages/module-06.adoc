@@ -44,6 +44,13 @@ spec:
     namespace: istio-system
     name: basic
 ----
++
+. Restart all three your virtual machines.
+.. Click *Virtualization -> VirtualMachines* and make sure you're in the `windowsmesh-{user}` Project.
+.. Use the extended menu on the right side of each virtual machine to *Restart* each of them.
+.. To validate that you have the side-car container added, go to *Workload -> Pods*.
+You should see the number of containers in the pod is now 2.
+The second pod is the Service Mesh side-car pod.
 
 [[prepinfo]]
 == Prepare Information
