@@ -30,6 +30,7 @@ The administrators have already given your user permissions to activate the serv
 Ask your instructor if you are interested in learning how this was achieved.
 
 To enable the Service Mesh for your namespace
+
 . *click the Plus sign on the upper right of the OpenShift Console*.
 . Paste the following YAML.
 +
