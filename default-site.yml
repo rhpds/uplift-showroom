@@ -1,6 +1,6 @@
 ---
 site:
-  title: Lab 02 - Uplift and Shift with ROSA
+  title: Uplift and Shift with ROSA
   start_page: modules::index.adoc
 
 content:
