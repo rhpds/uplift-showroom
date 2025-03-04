@@ -81,6 +81,9 @@ image::module-02-mtv/01_vSphere_Network.png[link=self, window=blank, width=100%]
 
 . Finally, review the datastores in use by browsing to the *Datastores* view. Expand the tree to see the datastores that are attached to the *SDDC-Datacenter*, and optionally browse to the *VMs* sub-tab to view the capacity used by each virtual machine.
 +
+NOTE: You might find that the VMs datastores are split across workload shares.
+Click the other workload share to see your other VMs.
++
 image::module-02-mtv/02_vSphere_Datastore.png[link=self, window=blank, width=100%]
 
 === Review the VMware provider to the migration toolkit
