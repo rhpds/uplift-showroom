@@ -32,6 +32,7 @@ Ask your instructor if you are interested in learning how this was achieved.
 To enable the Service Mesh for your namespace
 . *click the Plus sign on the upper right of the OpenShift Console*.
 . Paste the following YAML.
++
 [source,yaml,subs="+attributes",role=execute]
 ----
 apiVersion: maistra.io/v1
@@ -45,7 +46,7 @@ spec:
     name: basic
 ----
 +
-. Restart all three your virtual machines.
+. Restart all three your virtual machines to start the Istio side-car container.
 .. Click *Virtualization -> VirtualMachines* and make sure you're in the `windowsmesh-{user}` Project.
 .. Use the extended menu on the right side of each virtual machine to *Restart* each of them.
 .. To validate that you have the side-car container added, go to *Workload -> Pods*.
