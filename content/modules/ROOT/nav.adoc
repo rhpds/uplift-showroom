@@ -1,5 +1,6 @@
 * xref:index.adoc[]
 * xref:module-01.adoc[]
+* xref:module-02-mtv.adoc[]
 * xref:module-02.adoc[]
 * xref:module-03.adoc[]
 * xref:module-04.adoc[]
