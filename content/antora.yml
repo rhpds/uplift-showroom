@@ -1,6 +1,6 @@
 ---
 name: modules
-title: Lab 02 - UpLift and Shift
+title: UpLift and Shift
 version: master
 nav:
   - modules/ROOT/nav.adoc
