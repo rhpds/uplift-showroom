@@ -58,11 +58,11 @@ kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
  name: noegress
- namespace: windowsnetworking-{user}
+ namespace: windowsmesh-{user}
 spec:
  podSelector:
    matchLabels:
-     app: winnetworking
+     app: winmesh
  policyTypes:
    - Egress
 ----
