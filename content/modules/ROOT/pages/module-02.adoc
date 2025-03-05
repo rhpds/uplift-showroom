@@ -12,7 +12,7 @@ In this module you will increase the CPU resources dedicated to a VM using techn
 == Verifying Initial CPU Core Count
 
 .  To find the VM to change, click on the left bar, *click Virtualization -> VirtualMachines*
-On the top bar, select the *Project `windowsnetworking-{user}`*.
+On the top bar, select the *Project `windowsmesh-{user}`*.
 +
 .Identifying the `winweb01` virtual machine
 image::module-2-find-winweb01-vm.png[Find winweb01 VM,width=50%,link=self, window=blank]

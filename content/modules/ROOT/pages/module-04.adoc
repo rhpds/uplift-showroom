@@ -25,7 +25,7 @@ Services route traffic to resources by identifing them with a label selector.
 Labels can be applied to any OpenShift resources, including virtual machines,to identify and group them.
 You will create a service and identify the virtual machines it services as a load balancer by means of labels on the virtual machines.
 
-. On the left bar, click the *Virtualization -> VirtualMachines* and on the top bar select the *Project: `windowsnetworking-{user}`*
+. On the left bar, click the *Virtualization -> VirtualMachines* and on the top bar select the *Project: `windowsmesh-{user}`*
 . To find the label on the virtual machine that will identify it to the Service for selection, *click on the `winweb01`* virtual machine.
 *Click the YAML tab* and *search for "app: winnetworking"*.
 It's usualy near line 186.
@@ -75,6 +75,7 @@ image::module-4-create-route.png[Create Route,float="none",align="left",link=sel
 +
 .Completed Route
 image::module-4-create-route-form.png[Create Route form,float="none",align="left",link=self, window=blank, width=100%]
+image::module-4-create-route-form1.png[Create Route form,float="none",align="left",link=self, window=blank, width=100%]
 +
 . Test the Route.
 In the middle right, find the *Location* section.

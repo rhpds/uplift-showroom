@@ -65,7 +65,7 @@ Examine the configuration as follows.
 . Navigate to the Installed Operators page, and find the virtualization operator.
 Click the Virtualization Operator to examine its custom resources and APIs.
 +
-image://module-1-operators-virt.png[Installed Operators,link=self, window=blank, width=100%]
+image::module-1-operators-virt.png[Installed Operators,link=self, window=blank, width=100%]
 +
 The OpenShift Virtualization has already been deployed for you.
 Examine the configuration as follows.
@@ -92,9 +92,9 @@ It may seem trivial, but capturing utilization metrics from all VMs isn't simple
 OpenShift makes this easy by automatically generating these dashboards for every VM you run on OpenShift.
 The resource metrics are stored in a time series database allowing the user to view utilization at various points in time and is exportable if the customer wishes to view the metrics in their own dashboards.
 
-. View your list of virtual machines in the windowsnetworking-{user} project.
+. View your list of virtual machines in the windowsmesh-{user} project.
 On the left bar, *click Virtualization -> VirtualMachines*.
-Then *select Project: `windowsnetworking-{user}`* from the top bar.
+Then *select Project: `windowsmesh-{user}`* from the top bar.
 +
 image::module-1-virtual-machines.png[Virtualization VirtualMachines]
 +

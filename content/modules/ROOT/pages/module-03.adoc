@@ -13,7 +13,7 @@ If you do not, there will not be resources available to finish the workshop.
 
 [[yaml]]
 == Use the YAML manifest to create the virtual machine
-. Make sure you're in the proper namespace by using the *Projects:* drop-down on the top bar to select the *windowsnetworking-{user}* project.
+. Make sure you're in the proper namespace by using the *Projects:* drop-down on the top bar to select the *windowsmesh-{user}* project.
 . Click *VirtualMachines -> Create -> With YAML* in the top right corner.
 +
 .Locating the new virtual machine page
@@ -37,7 +37,7 @@ metadata:
     vm.kubevirt.io/template.revision: '1'
     vm.kubevirt.io/template.version: v0.25.0
   name: winweb03
-  namespace: "windowsnetworking-{user}"
+  namespace: "windowsmesh-{user}"
 spec:
   dataVolumeTemplates:
   - apiVersion: cdi.kubevirt.io/v1beta1
