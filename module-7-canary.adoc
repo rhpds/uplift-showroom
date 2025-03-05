@@ -1,0 +1,18 @@
+= Canary deployment strategy
+
+== Introduction
+
+Applications have their own life cycle, so we should be able to execute independent canary deployment.
+All the applications and dependencies will not change their version at the same time.
+
+=== Canary deployment
+
+In the intricate world of software deployment, we encounter a fascinating strategy known as the canary deployment.
+Here, the operator introduces a new version of their application, but with a cautious approach.
+Only a small fraction of the production traffic is allowed to interact with this untested version.
+This select group serves as a vital testing ground, providing invaluable feedback on the new iteration.
+Should the new version prove successful, the operator gradually increases the percentage of traffic, ultimately transitioning all users to this enhanced experience.
+Unlike the more abrupt blue/green deployment method, canary deployments offer a gentler transition, ensuring that any potential failures are contained, minimizing their impact on the broader ecosystem.
+Such is the elegance of this approach in the ever-evolving landscape of technology.
+
+== Implementation
