@@ -27,12 +27,12 @@ You will create a service and identify the virtual machines it services as a loa
 
 . On the left bar, click the *Virtualization -> VirtualMachines* and on the top bar select the *Project: `windowsmesh-{user}`*
 . To find the label on the virtual machine that will identify it to the Service for selection, *click on the `winweb01`* virtual machine.
-*Click the YAML tab* and *search for "app: winnetworking"*.
+*Click the YAML tab* and *search for "app: winmesh"*.
 It's usualy near line 186.
 This is an arbitrary label assigned to both virtual machines.
 +
 .Identify the label on the virtual machine instance
-image::module-4-find-vm-app-label.png[Find VM label app=winnetworking,link=self, window=blank, width=100%]
+image::module-4-find-vm-app-label.png[Find VM label app=winmesh,link=self, window=blank, width=100%]
 +
 . On the left side of the console, click to expand *Networking -> Services* and on the top right corner, click *Create Service*.
 +
@@ -40,15 +40,15 @@ image::module-4-find-vm-app-label.png[Find VM label app=winnetworking,link=self,
 image::module-4-create-service.png[Create Service button,link=self, window=blank, width=100%]
 +
 . Modify the Service to load balance between virtual machines
-.. On line 4, change the *name:* to `windowsnetworking`.
-.. Modify line 8 to read `app: winnetworking`
+.. On line 4, change the *name:* to `winmesh`.
+.. Modify line 8 to read `app: winmesh`
 .. Change the *targetPort:* value on line 12 to `80` then *click "Create"* in the bottom left corner
 +
 .Modify the Service configuration
 image::module-4-create-service-yaml.png[Create Service YAML,float="none",align="left",link=self, window=blank, width=100%]
 +
 . Click the *Pods tab* and notice that the two `winweb` virtual machines have already registered with the service object.
-This will allow applications within the OpenShift cluster to access these virtual machines through the windowsnetworking Service, aka "load balancer".
+This will allow applications within the OpenShift cluster to access these virtual machines through the winmesh Service, aka "load balancer".
 +
 .Examine Pods identified by the label selector
 image::module-4-pods-in-service.png[Pods in Service,float="none",align="left",link=self, window=blank, width=100%]
@@ -65,8 +65,8 @@ Use a Route to provide external access to the virtuals machines through the inte
 image::module-4-create-route.png[Create Route,float="none",align="left",link=self, window=blank, width=100%]
 +
 . Use the form to create the Route.
-.. In the *name:* field put `windowsnetworking`.
-.. Click the drop down box below *Service* and select the `windowsnetworking` Service you just created.
+.. In the *name:* field put `winmesh`.
+.. Click the drop down box below *Service* and select the `winmesh` Service you just created.
 .. Click the drop down box below *Target port* and select port `80`.
 .. Tick the *Secure Route* checkbox.
 .. Under *TLS termination*, select `Edge`.
@@ -94,7 +94,7 @@ If you'd like, update the Route to disable cookies and sticky sessions.
 +
 [,sh,role=execute]
 ----
-oc annotate route windowsnetworking haproxy.router.openshift.io/disable_cookies='true'
+oc annotate route winmesh haproxy.router.openshift.io/disable_cookies='true'
 ----
 
 [[congratulations]]
