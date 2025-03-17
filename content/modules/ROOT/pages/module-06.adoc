@@ -13,6 +13,7 @@ What tooling exists for those legacy virtual machines to troubleshoot?
 In this final section, we'll show how we can use the advanced network telemetry from Istio and Kiali to easily troubleshoot these issues with our legacy windows virtual machines.
 
 ////
+
 == Remove the Service and Route
 
 The Service and Route created in the previous modules are no longer necessary.
@@ -25,13 +26,21 @@ CAUTION: Make sure you're in your `windowsmesh-{user}` namespace.
 
 Now you can proceed to replace these features with the Service Mesh.
 
+////
+
 == Enable Service Mesh in your VMs
 
 . Go to each winweb VM and add the following line to *line 190 in the YAML* as part of the `annotations:` section.
 +
 [source,yaml,subs="+attributes",role=execute]
 ----
-        sidecar.istio.io/inject: 'true'
+      annotations:
+        sidecar.istio.io/inject: "true"
+        proxy.istio.io/config: |
+          holdApplicationUntilProxyStarts: true
+          proxyMetadata:
+            ISTIO_META_DNS_CAPTURE: 'false'
+            ISTIO_META_DNS_AUTO_ALLOCATE: 'false'
 ----
 
 . Go to the database VM and add the following line to *line 157 in the YAML*, as part of the `annotations:` section.
@@ -40,7 +49,6 @@ Now you can proceed to replace these features with the Service Mesh.
 ----
         sidecar.istio.io/inject: 'true'
 ----
-////
 
 == Enable Service Mesh in Your Namespace
 
