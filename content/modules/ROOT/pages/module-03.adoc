@@ -46,8 +46,11 @@ spec:
       name: winweb03
     spec:
       source: # <1>
-        http:
-          url: 'http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt/winweb01.qcow2'
+        snapshot:
+          name: winweb03
+          namespace: default
+        # http:
+        #   url: 'http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt/winweb01.qcow2'
       storage:
         resources:
           requests:
@@ -122,7 +125,8 @@ spec:
           name: winweb03
         name: rootdisk
 ----
-<1> The virtual machine image
+<1> The virtual machine image is supplied by cloning a snapshot of a PVC of the imported virtual machine image ISO.
+This is the highest performing method.
 +
 [.left]
 . Watch the new `winweb03` virtual machine go through three phases:
