@@ -24,7 +24,6 @@ CAUTION: Make sure you're in your `windowsmesh-{user}` namespace.
 . To delete the route, click *Networking -> Routes* and delete all the routes you find.
 
 Now you can proceed to replace these features with the Service Mesh.
-////
 
 == Enable Service Mesh in your VMs
 
@@ -41,6 +40,7 @@ Now you can proceed to replace these features with the Service Mesh.
 ----
         sidecar.istio.io/inject: 'true'
 ----
+////
 
 == Enable Service Mesh in Your Namespace
 
@@ -71,6 +71,8 @@ spec:
 .. To validate that you have the side-car container added, go to *Workload -> Pods*.
 You should see the number of containers in the pod is now 2.
 The second pod is the Service Mesh side-car pod.
++
+NOTE:  It will take one or two minutes for the Windows virtual machines to restart, because they are doing graceful shutdowns.
 
 [[prepinfo]]
 == Prepare Information
