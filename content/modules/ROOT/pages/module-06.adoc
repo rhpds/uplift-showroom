@@ -30,7 +30,7 @@ Now you can proceed to replace these features with the Service Mesh.
 
 == Enable Service Mesh in your VMs
 
-. Go to each winweb VM and add the following lines to around *line 175 in the YAML* as part of the `annotations:` section.
+. *Go to each winweb VM* and add the following lines to around *line 175 in the YAML* as part of the `annotations:` section.
 +
 [source,yaml,subs="+attributes",role=execute]
 ----
@@ -43,7 +43,7 @@ Now you can proceed to replace these features with the Service Mesh.
             ISTIO_META_DNS_AUTO_ALLOCATE: 'false'
 ----
 
-. Go to the database VM and add the following line to around *line 145 in the YAML*, as part of the `annotations:` section.
+. *Go to the database VM* and add the following line to around *line 145 in the YAML*, as part of the `annotations:` section.
 +
 [source,yaml,subs="+attributes",role=execute]
 ----
