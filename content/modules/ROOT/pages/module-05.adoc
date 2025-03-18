@@ -82,6 +82,10 @@ image::module-5-powershell-curl-failure.png[Powershell cURL failure,link=self, w
 +
 The egress to Internet connection has been denied with a timeout.
 
+== Delete the No-Egress Policy
+
+WARNING: Futher labs will not function properly if you don't delete this network policy.
+
 [[congratulations]]
 == Congratulations
 
