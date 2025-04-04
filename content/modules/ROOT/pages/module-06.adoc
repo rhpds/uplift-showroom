@@ -34,20 +34,20 @@ Now you can proceed to replace these features with the Service Mesh.
 +
 [source,yaml,subs="+attributes",role=execute]
 ----
-annotations:
-  sidecar.istio.io/inject: "true"
-  proxy.istio.io/config: |
-    holdApplicationUntilProxyStarts: true
-    proxyMetadata:
-      ISTIO_META_DNS_CAPTURE: 'false'
-      ISTIO_META_DNS_AUTO_ALLOCATE: 'false'
+  annotations:
+        sidecar.istio.io/inject: "true"
+        proxy.istio.io/config: |
+          holdApplicationUntilProxyStarts: true
+          proxyMetadata:
+            ISTIO_META_DNS_CAPTURE: 'false'
+            ISTIO_META_DNS_AUTO_ALLOCATE: 'false'
 ----
 
 . *Go to the database VM* and add the following line to around *line 145 in the YAML*, as part of the `annotations:` section.
 +
 [source,yaml,subs="+attributes",role=execute]
 ----
-sidecar.istio.io/inject: 'true'
+  sidecar.istio.io/inject: 'true'
 ----
 
 == Enable Service Mesh in Your Namespace
