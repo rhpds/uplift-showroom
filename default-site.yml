@@ -19,7 +19,7 @@ runtime:
 antora:
   extensions:
     - require: ./content/lib/dev-mode.js
-      enabled: false
+      enabled: true
 
 output:
   dir: ./www
