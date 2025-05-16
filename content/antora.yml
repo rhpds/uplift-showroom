@@ -17,6 +17,7 @@ asciidoc:
     vcenter_console: sample_vcenter_console
     vcenter_full_user: sample_vcenter_full_user
     vcenter_password: sample_vcenter_password
+    deployer_domain: apps.rosa-sample.sample.p1.openshiftapps.com
     page-links:
     - url: https://redhat.com
       text: Red Hat
