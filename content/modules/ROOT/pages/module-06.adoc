@@ -129,12 +129,12 @@ Instead of setting up a kubernetes service, lets's set up  service mesh!
 
 . Log in to the {openshift_console_url}[OpenShift Console] via Cogito as `{user}` with password `{password}`.
 . Change to the Administrator perspective, in the dropdown on the left.
-. To find the Kiali web ui, click *Home -> Projects -> `istio-system`*.
+. To find the Kiali web ui, select it from the menu on the upper right of the screen.
 Click the link on the right side *Launcher* *Kiali* image:fa-external-link-alt.png[]
 +
 image::module-6-kiali-link.png[Kiali route link,link=self, window=blank, width=100%]
 +
-. Log in to the {kiali_url}[Kiali web interface^] with your username `{user}` and password `{password}`.
+. Log in to the Kiali web interface with your username `{user}` and password `{password}`.
 . Within Kiali, click *Services* on the left.
 . From the *namespace* drop-down on the top bar, select your namespace: `windowsmesh-{user}`.
 . Notice that we have a service called `winmesh`.
