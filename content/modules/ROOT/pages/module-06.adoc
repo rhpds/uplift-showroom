@@ -127,7 +127,7 @@ Instead of setting up a kubernetes service, lets's set up  service mesh!
 
 === Access the Service Mesh UI: Kiali
 
-. Log in to the {openshift_console_url}[OpenShift Console] via Cogito as `{user}` with password `{password}`.
+. Log in to the {rosa_openshift_console_url}[OpenShift Console] via Cogito as `{user}` with password `{password}`.
 . Change to the Administrator perspective, in the dropdown on the left.
 . To find the Kiali web ui, click *Home -> Projects -> `istio-system`*.
 Click the link on the right side *Launcher* *Kiali* image:fa-external-link-alt.png[]
